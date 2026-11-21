@@ -86,8 +86,16 @@ public abstract class Employee {
     public void setEmployeeType(String employeeType) {
         this.employeeType = employeeType;
     }
+
+    public int getEmployeeID() {
+        return employeeID;
+    }
+    
+
     
     
+    
+    public abstract double calcSalary();
     
     
 }
