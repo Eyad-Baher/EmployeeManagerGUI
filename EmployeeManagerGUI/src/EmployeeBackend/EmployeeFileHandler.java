@@ -91,7 +91,7 @@ public class EmployeeFileHandler {
 
     public static void saveToFile(ArrayList<Employee> employees) {
         try {
-            BufferedWriter fwriter = new BufferedWriter(new FileWriter(FILE_NAME, true));
+            BufferedWriter fwriter = new BufferedWriter(new FileWriter(FILE_NAME));
             for (Employee employee : employees) {
 
                 String empDetails = toCSV(employee);
