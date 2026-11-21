@@ -45,6 +45,13 @@ public class PartTimeEmployee extends Employee {
         this.totalSalary = totalSalary;
     }
 
+    @Override
+    public double calcSalary() {
+        totalSalary = hourlyPaymentRate * hoursWorked;
+        
+        return totalSalary;
+    }
+
     
     
     

@@ -44,7 +44,22 @@ public class FullTimeEmployee extends Employee{
     public void setTotalSalary(double totalSalary) {
         this.totalSalary = totalSalary;
     }
+
+    @Override
+    public double calcSalary() {
+        
+        totalSalary = basicMonthlySalary + monthlyBonus;
+        return totalSalary;
+    }
+
+    
+    
+    
         
         
+    
+    
+    
+      
      
 }
