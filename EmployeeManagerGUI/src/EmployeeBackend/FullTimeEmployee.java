@@ -20,6 +20,30 @@ public class FullTimeEmployee extends Employee{
         this.monthlyBonus = monthlyBonus;
         this.totalSalary = totalSalary;
     }
+
+    public double getBasicMonthlySalary() {
+        return basicMonthlySalary;
+    }
+
+    public void setBasicMonthlySalary(double basicMonthlySalary) {
+        this.basicMonthlySalary = basicMonthlySalary;
+    }
+
+    public double getMonthlyBonus() {
+        return monthlyBonus;
+    }
+
+    public void setMonthlyBonus(double monthlyBonus) {
+        this.monthlyBonus = monthlyBonus;
+    }
+
+    public double getTotalSalary() {
+        return totalSalary;
+    }
+
+    public void setTotalSalary(double totalSalary) {
+        this.totalSalary = totalSalary;
+    }
         
         
      
