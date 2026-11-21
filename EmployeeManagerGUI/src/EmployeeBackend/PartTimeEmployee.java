@@ -10,6 +10,43 @@ package EmployeeBackend;
  */
 public class PartTimeEmployee extends Employee {
     
-    private 
+    private double hourlyPaymentRate;
+    private int hoursWorked;
+    private double totalSalary;
+
+    public PartTimeEmployee(double hourlyPaymentRate, int hoursWorked, double totalSalary, String firstName, String lastName, String Department, int age, String employeePosition, String employeeType) {
+        super(firstName, lastName, Department, age, employeePosition, employeeType);
+        this.hourlyPaymentRate = hourlyPaymentRate;
+        this.hoursWorked = hoursWorked;
+        this.totalSalary = totalSalary;
+    }
+
+    public double getHourlyPaymentRate() {
+        return hourlyPaymentRate;
+    }
+
+    public void setHourlyPaymentRate(double hourlyPaymentRate) {
+        this.hourlyPaymentRate = hourlyPaymentRate;
+    }
+
+    public int getHoursWorked() {
+        return hoursWorked;
+    }
+
+    public void setHoursWorked(int hoursWorked) {
+        this.hoursWorked = hoursWorked;
+    }
+
+    public double getTotalSalary() {
+        return totalSalary;
+    }
+
+    public void setTotalSalary(double totalSalary) {
+        this.totalSalary = totalSalary;
+    }
+
+    
+    
+    
     
 }
