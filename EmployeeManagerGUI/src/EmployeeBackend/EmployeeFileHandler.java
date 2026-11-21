@@ -12,7 +12,8 @@ import java.util.ArrayList;
  * @author HP
  */
 public class EmployeeFileHandler {
-    
+
+    private static final String FILE_NAME = "EmployeeDetails.csv";
     public static int FinalID;
 
     public static String toCSV(Employee emp) {
@@ -20,12 +21,12 @@ public class EmployeeFileHandler {
             return emp.getEmployeeType().toUpperCase() + "," + emp.getEmployeeID() + "," + emp.getFirstName() + "," + emp.getLastName() + ","
                     + emp.getAge() + "," + emp.getDepartment() + "," + emp.getEmployeePosition() + ","
                     + ((FullTimeEmployee) emp).getBasicMonthlySalary() + "," + ((FullTimeEmployee) emp).getMonthlyBonus() + ","
-                    + ((FullTimeEmployee) emp).getTotalSalary();
+                    + emp.calcSalary();
         } else if (emp instanceof PartTimeEmployee) {
-            return emp.getEmployeeType() + "," + emp.getEmployeeID() + "," + emp.getFirstName() + "," + emp.getLastName() + ","
+            return emp.getEmployeeType().toUpperCase() + "," + emp.getEmployeeID() + "," + emp.getFirstName() + "," + emp.getLastName() + ","
                     + emp.getAge() + "," + emp.getDepartment() + "," + emp.getEmployeePosition() + ","
-                    + ((PartTimeEmployee) emp).getHourlyPaymentRate() + "," + ((PartTimeEmployee) emp).getHoursWorked()
-                    + ((PartTimeEmployee) emp).getTotalSalary();
+                    + ((PartTimeEmployee) emp).getHourlyPaymentRate() + "," + ((PartTimeEmployee) emp).getHoursWorked()+","
+                    + emp.calcSalary();
         } else {
             return null;
         }
@@ -34,14 +35,14 @@ public class EmployeeFileHandler {
     public static void loadFile() {
         String line;
         try {
-            BufferedReader freader = new BufferedReader(new FileReader("EmployeeDeatils.csv"));
+            BufferedReader freader = new BufferedReader(new FileReader(FILE_NAME));
 
             while ((line = freader.readLine()) != null) {
-                
+
                 parseDetails(line);
 
             }
-            
+
             Employee.setEmployeeNum(FinalID);
             freader.close();
 
@@ -67,7 +68,7 @@ public class EmployeeFileHandler {
         double FullMonthlyBonus;
 
         double PartHourRate;
-        int PartNumHours;
+        double PartNumHours;
 
         double empTotalSalary = Double.parseDouble(splitDetails[9]);
 
@@ -75,32 +76,30 @@ public class EmployeeFileHandler {
             FullBasicSalary = Double.parseDouble(splitDetails[7]);
             FullMonthlyBonus = Double.parseDouble(splitDetails[8]);
 
-            EmployeeManager.loadEmployee(empID,FullBasicSalary, FullMonthlyBonus, empTotalSalary, empFName, empLName, empDep, empAge, empPos, empType);
+            EmployeeManager.loadFullEmployee(empID, FullBasicSalary, FullMonthlyBonus, empTotalSalary, empFName, empLName, empDep, empAge, empPos, empType);
 
         } else if (empType.equals("PART")) {
             PartHourRate = Double.parseDouble(splitDetails[7]);
-            PartNumHours = Integer.parseInt(splitDetails[8]);
-            
-            EmployeeManager.loadEmployee(empID,PartHourRate, PartNumHours, empTotalSalary, empFName, empLName, empDep, empAge, empPos, empType);
+            PartNumHours = Double.parseDouble(splitDetails[8]);
+
+            EmployeeManager.loadPartEmployee(empID, PartHourRate, PartNumHours, empTotalSalary, empFName, empLName, empDep, empAge, empPos, empType);
 
         }
 
-        FinalID = empID;
+        FinalID = empID+1;
     }
 
-    
-    public static void saveToFile(ArrayList<Employee> employees)
-    {
+    public static void saveToFile(ArrayList<Employee> employees) {
         try {
-            BufferedWriter fwriter = new BufferedWriter(new FileWriter("EmployeeDetails.csv",true));
+            BufferedWriter fwriter = new BufferedWriter(new FileWriter(FILE_NAME, true));
             for (Employee employee : employees) {
-                
+
                 String empDetails = toCSV(employee);
                 fwriter.write(empDetails);
                 fwriter.newLine();
-                fwriter.close();
             }
-            
+            fwriter.close();
+
         } catch (IOException ex) {
             System.getLogger(EmployeeFileHandler.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
         }

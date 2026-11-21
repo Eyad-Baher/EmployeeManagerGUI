@@ -11,10 +11,10 @@ package EmployeeBackend;
 public class PartTimeEmployee extends Employee {
     
     private double hourlyPaymentRate;
-    private int hoursWorked;
+    private double hoursWorked;
     private double totalSalary;
 
-    public PartTimeEmployee(double hourlyPaymentRate, int hoursWorked, double totalSalary, String firstName, String lastName, String Department, int age, String employeePosition, String employeeType) {
+    public PartTimeEmployee(double hourlyPaymentRate, double hoursWorked, double totalSalary, String firstName, String lastName, String Department, int age, String employeePosition, String employeeType) {
         super(firstName, lastName, Department, age, employeePosition, employeeType);
         this.hourlyPaymentRate = hourlyPaymentRate;
         this.hoursWorked = hoursWorked;
@@ -29,11 +29,11 @@ public class PartTimeEmployee extends Employee {
         this.hourlyPaymentRate = hourlyPaymentRate;
     }
 
-    public int getHoursWorked() {
+    public double getHoursWorked() {
         return hoursWorked;
     }
 
-    public void setHoursWorked(int hoursWorked) {
+    public void setHoursWorked(double hoursWorked) {
         this.hoursWorked = hoursWorked;
     }
 
