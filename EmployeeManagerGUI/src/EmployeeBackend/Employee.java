@@ -11,7 +11,7 @@ package EmployeeBackend;
 public abstract class Employee {
     
     private static int employeeNum = 0;
-    private final int employeeID;
+    private int employeeID;
     private String firstName;
     private String lastName;
     private String Department;
@@ -89,6 +89,10 @@ public abstract class Employee {
 
     public int getEmployeeID() {
         return employeeID;
+    }
+
+    protected void setEmployeeID(int employeeID) {
+        this.employeeID = employeeID;
     }
     
 

@@ -12,6 +12,8 @@ import java.lang.ref.Cleaner;
  * @author HP
  */
 public class EmployeeFileHandler {
+    
+    public static int FinalID;
 
     public static String toCSV(Employee emp) {
         if (emp instanceof FullTimeEmployee) {
@@ -39,6 +41,8 @@ public class EmployeeFileHandler {
                 parseDetails(line);
 
             }
+            
+            Employee.setEmployeeNum(FinalID);
 
         } catch (FileNotFoundException ex) {
             System.getLogger(EmployeeFileHandler.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
@@ -70,16 +74,17 @@ public class EmployeeFileHandler {
             FullBasicSalary = Double.parseDouble(splitDetails[7]);
             FullMonthlyBonus = Double.parseDouble(splitDetails[8]);
 
-            EmployeeManager.createEmployee(FullBasicSalary, FullMonthlyBonus, empTotalSalary, empFName, empLName, empDep, empAge, empPos, empType);
+            EmployeeManager.loadEmployee(empID,FullBasicSalary, FullMonthlyBonus, empTotalSalary, empFName, empLName, empDep, empAge, empPos, empType);
 
         } else if (empType.equals("PART")) {
             PartHourRate = Double.parseDouble(splitDetails[7]);
             PartNumHours = Integer.parseInt(splitDetails[8]);
             
-            EmployeeManager.createEmployee(PartHourRate, PartNumHours, empTotalSalary, empFName, empLName, empDep, empAge, empPos, empType);
+            EmployeeManager.loadEmployee(empID,PartHourRate, PartNumHours, empTotalSalary, empFName, empLName, empDep, empAge, empPos, empType);
 
         }
 
+        FinalID = empID;
     }
 
 }

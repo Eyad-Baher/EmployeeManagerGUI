@@ -31,8 +31,18 @@ public class EmployeeManager {
         addEmployee(partTimeEmp);
     }
     
-    public static void loadEmployee()
+    public static void loadEmployee(int id,double basicMonthlySalary, double monthlyBonus, double totalSalary, String firstName, String lastName, String Department, int age, String employeePosition, String employeeType)
     {
-        
+        Employee fullTimeEmp = new FullTimeEmployee(basicMonthlySalary, monthlyBonus, totalSalary, firstName, lastName, Department, age, employeePosition, employeeType);
+        fullTimeEmp.setEmployeeID(id);
+        addEmployee(fullTimeEmp);
     }
+    
+     public static void loadEmployee(int id,double hourlyPaymentRate, int hoursWorked, double totalSalary, String firstName, String lastName, String Department, int age, String employeePosition, String employeeType)
+    {
+        Employee partTimeEmp = new PartTimeEmployee(hourlyPaymentRate, hoursWorked, totalSalary, firstName, lastName, Department, age, employeePosition, employeeType);
+        partTimeEmp.setEmployeeID(id);
+        addEmployee(partTimeEmp);
+    }
+    
 }
