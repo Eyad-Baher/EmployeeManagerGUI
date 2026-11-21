@@ -6,6 +6,7 @@ package EmployeeBackend;
 
 import java.io.*;
 import java.lang.ref.Cleaner;
+import java.util.ArrayList;
 
 /**
  *
@@ -43,6 +44,7 @@ public class EmployeeFileHandler {
             }
             
             Employee.setEmployeeNum(FinalID);
+            freader.close();
 
         } catch (FileNotFoundException ex) {
             System.getLogger(EmployeeFileHandler.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
@@ -87,4 +89,21 @@ public class EmployeeFileHandler {
         FinalID = empID;
     }
 
+    
+    public static void saveToFile(ArrayList<Employee> employees)
+    {
+        try {
+            BufferedWriter fwriter = new BufferedWriter(new FileWriter("EmployeeDetails.csv",true));
+            for (Employee employee : employees) {
+                
+                String empDetails = toCSV(employee);
+                fwriter.write(empDetails);
+                fwriter.newLine();
+                fwriter.close();
+            }
+            
+        } catch (IOException ex) {
+            System.getLogger(EmployeeFileHandler.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
+        }
+    }
 }
