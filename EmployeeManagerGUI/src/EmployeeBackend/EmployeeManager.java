@@ -5,7 +5,6 @@
 package EmployeeBackend;
 
 import DepartmentBackend.Department;
-import java.lang.invoke.MethodHandles;
 import java.util.ArrayList;
 
 /**
@@ -77,6 +76,16 @@ public class EmployeeManager {
             return false;
         }
 
+    }
+    
+    public static void saveAll()
+    {
+        EmployeeFileHandler.saveToFile(employees);
+    }
+    
+    public static void clearAll()
+    {
+        employees.clear();
     }
     
     public static void modifyEmployee(int empID)
