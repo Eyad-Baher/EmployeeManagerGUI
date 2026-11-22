@@ -12,4 +12,9 @@ import java.util.ArrayList;
  */
 public class DepartmentManager {
     private ArrayList<Department> depList  = new ArrayList<>();
+    
+    public void addDepartment(Department department)
+    {
+        
+    }
 }
