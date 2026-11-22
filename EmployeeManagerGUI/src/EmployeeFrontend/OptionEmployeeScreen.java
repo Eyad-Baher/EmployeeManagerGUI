@@ -65,6 +65,12 @@ public class OptionEmployeeScreen extends javax.swing.JFrame {
         viewButton.setText("View Employees");
         viewButton.addActionListener(this::viewButtonActionPerformed);
 
+        addPhoto.setIcon(new javax.swing.ImageIcon("C:\\Users\\abdel\\OneDrive\\Documents\\NetBeansProjects\\EmployeeManagerGUI\\EmployeeManagerGUI\\add-employee-icon-128.png")); // NOI18N
+
+        viewPhoto.setIcon(new javax.swing.ImageIcon("C:\\Users\\abdel\\OneDrive\\Documents\\NetBeansProjects\\EmployeeManagerGUI\\EmployeeManagerGUI\\view-employees-icon-128.png")); // NOI18N
+
+        modifyPhoto.setIcon(new javax.swing.ImageIcon("C:\\Users\\abdel\\OneDrive\\Documents\\NetBeansProjects\\EmployeeManagerGUI\\EmployeeManagerGUI\\modify-employee-icon-128.png")); // NOI18N
+
         modifyButton.setBackground(new java.awt.Color(102, 255, 204));
         modifyButton.setFont(new java.awt.Font("Segoe UI Semibold", 2, 14)); // NOI18N
         modifyButton.setForeground(new java.awt.Color(0, 0, 153));
@@ -73,6 +79,7 @@ public class OptionEmployeeScreen extends javax.swing.JFrame {
 
         jButton1.setBackground(new java.awt.Color(255, 0, 0));
         jButton1.setFont(new java.awt.Font("Segoe UI Semibold", 1, 18)); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon("C:\\Users\\abdel\\OneDrive\\Documents\\NetBeansProjects\\EmployeeManagerGUI\\EmployeeManagerGUI\\logout-icon-64 (1).png")); // NOI18N
         jButton1.setText("Log-out");
         jButton1.addActionListener(this::jButton1ActionPerformed);
 
