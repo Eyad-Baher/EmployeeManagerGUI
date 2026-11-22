@@ -4,6 +4,8 @@
  */
 package EmployeeBackend;
 
+import DepartmentBackend.Department;
+
 /**
  *
  * @author HP
@@ -14,12 +16,14 @@ public class PartTimeEmployee extends Employee {
     private double hoursWorked;
     private double totalSalary;
 
-    public PartTimeEmployee(double hourlyPaymentRate, double hoursWorked, double totalSalary, String firstName, String lastName, String Department, int age, String employeePosition, String employeeType) {
-        super(firstName, lastName, Department, age, employeePosition, employeeType);
+    public PartTimeEmployee(double hourlyPaymentRate, double hoursWorked, double totalSalary, String firstName, String lastName, Department department, int age, String employeePosition, String employeeType) {
+        super(firstName, lastName, department, age, employeePosition, employeeType);
         this.hourlyPaymentRate = hourlyPaymentRate;
         this.hoursWorked = hoursWorked;
         this.totalSalary = totalSalary;
     }
+
+
 
     public double getHourlyPaymentRate() {
         return hourlyPaymentRate;
