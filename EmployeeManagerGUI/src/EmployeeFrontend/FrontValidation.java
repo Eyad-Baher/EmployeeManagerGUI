@@ -10,6 +10,18 @@ package EmployeeFrontend;
  */
 public class FrontValidation {
     
+    public static boolean validateName(String name)
+    {
+     if (name == null) {
+        return false;
+    }
+    for (int i = 0; i < name.length(); i++) {
+        if (Character.isDigit(name.charAt(i))) {
+            return false;
+        }
+    }
+    return true;
+    }
     
     
     

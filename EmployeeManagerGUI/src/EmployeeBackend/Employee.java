@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package EmployeeBackend;
-
+import DepartmentBackend.Department;
 /**
  *
  * @author HP
@@ -14,18 +14,18 @@ public abstract class Employee {
     private int employeeID;
     private String firstName;
     private String lastName;
-    private String Department;
+    private Department department ;
     private int age;
     private String employeePosition;
     private String employeeType;
 
-    public Employee(String firstName, String lastName, String Department, int age, String employeePosition, String employeeType) {
+    public Employee(String firstName, String lastName, Department department, int age, String employeePosition, String employeeType) {
        
         this.employeeID = employeeNum;
         employeeNum++;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.Department = Department;
+        this.department = department;
         this.age = age;
         this.employeePosition = employeePosition;
         this.employeeType = employeeType;
@@ -55,13 +55,15 @@ public abstract class Employee {
         this.lastName = lastName;
     }
 
-    public String getDepartment() {
-        return Department;
+    public Department getDepartment() {
+        return department;
     }
 
-    public void setDepartment(String Department) {
-        this.Department = Department;
+    public void setDepartment(Department department) {
+        this.department = department;
     }
+
+
 
     public int getAge() {
         return age;
