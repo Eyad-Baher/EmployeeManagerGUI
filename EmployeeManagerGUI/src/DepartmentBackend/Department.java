@@ -13,7 +13,7 @@ public class Department {
     private String name;
     private int id;
 
-    public Department(String name, int id) {
+    public Department(String name) {
         this.name = name;
         depNum++;
         this.id = depNum;
