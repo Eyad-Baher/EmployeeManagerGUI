@@ -13,13 +13,24 @@ import java.util.ArrayList;
 public class DepartmentManager {
     public static ArrayList<Department> depList  = new ArrayList<>();
     
-    public static void addDepartment(Department department)
+    public static boolean addDepartment(Department newDepartment)
     {
-        depList.add(department);
+        if(newDepartment.getName()==null || newDepartment.getName().equals(""))
+            return false;
+        else
+        {
+            for(Department dep:depList)
+            {
+                if(newDepartment.getName().equalsIgnoreCase(dep.getName()))
+                    return false;
+            }
+        }
+        depList.add(newDepartment);
+        return true;
     }
     
     public static void loadDepartment(String name, int id){
-        Department dep = new Department(name, id);
+        Department dep = new Department(name);
         dep.setId(id);
         addDepartment(dep);
         
