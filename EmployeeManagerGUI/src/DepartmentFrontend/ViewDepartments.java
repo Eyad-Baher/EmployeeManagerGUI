@@ -4,6 +4,12 @@
  */
 package DepartmentFrontend;
 
+import DepartmentBackend.Department;
+import DepartmentBackend.DepartmentFileHandling;
+import DepartmentBackend.DepartmentManager;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Lina Islam
@@ -21,7 +27,14 @@ public class ViewDepartments extends javax.swing.JFrame {
     }
     
     public void fillTable(){
+        DepartmentFileHandling.readFile();
+        ArrayList<Department> deps= DepartmentManager.depList;
         
+        DefaultTableModel m= (DefaultTableModel)jTable1.getModel();
+        for (Department d : deps) {
+            m.addRow(new Object[]{d.getId(),d.getName()});
+        }
+          
     }
 
     /**

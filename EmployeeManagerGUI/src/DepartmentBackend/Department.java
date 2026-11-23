@@ -39,5 +39,9 @@ public class Department {
     protected void setId(int id) {
         this.id = id;
     }
+
+    public static void setDepNum(int depNum) {
+        Department.depNum = depNum;
+    }
    
 }
