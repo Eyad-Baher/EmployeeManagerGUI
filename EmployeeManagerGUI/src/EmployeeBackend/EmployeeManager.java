@@ -25,11 +25,13 @@ public class EmployeeManager {
 
     public static void createFullEmployee(double basicMonthlySalary, double monthlyBonus, double totalSalary, String firstName, String lastName, Department Department, int age, String employeePosition, String employeeType) {
         Employee fullTimeEmp = new FullTimeEmployee(basicMonthlySalary, monthlyBonus, totalSalary, firstName, lastName, Department, age, employeePosition, employeeType);
+        fullTimeEmp.calcSalary();
         addEmployee(fullTimeEmp);
     }
 
     public static void createPartEmployee(double hourlyPaymentRate, double hoursWorked, double totalSalary, String firstName, String lastName, Department Department, int age, String employeePosition, String employeeType) {
         Employee partTimeEmp = new PartTimeEmployee(hourlyPaymentRate, hoursWorked, totalSalary, firstName, lastName, Department, age, employeePosition, employeeType);
+        partTimeEmp.calcSalary();
         addEmployee(partTimeEmp);
     }
 
