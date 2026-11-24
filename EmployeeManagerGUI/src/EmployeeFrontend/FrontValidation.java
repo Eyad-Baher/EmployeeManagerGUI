@@ -4,6 +4,8 @@
  */
 package EmployeeFrontend;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author HP
@@ -23,7 +25,17 @@ public class FrontValidation {
     return true;
     }
     
+    public static boolean validateFirstName(String firstName){
+        
+             
+       if (firstName.isBlank() || firstName.isEmpty() || !validateName(firstName)){
+           JOptionPane.showMessageDialog(null, "please enter valid name");
+            return false;
+        }
+       else{
+           return true;
+       }
+        
     
-    
-    
+    }
 }
