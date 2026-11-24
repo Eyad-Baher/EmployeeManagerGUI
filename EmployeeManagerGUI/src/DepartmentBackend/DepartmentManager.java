@@ -22,6 +22,6 @@ public class DepartmentManager {
         Department dep = new Department(name, id);
         dep.setId(id);
         addDepartment(dep);
-        
     }
+    
 }

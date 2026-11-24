@@ -4,9 +4,12 @@
  */
 package DepartmentBackend;
 
+import static DepartmentBackend.DepartmentManager.depList;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 
 /**
@@ -16,6 +19,13 @@ import java.io.IOException;
 public class DepartmentFileHandling {
     
     public static int finalID ;
+    
+    public static String toCSV(Department department){
+        if(department != null)
+        return department.getId()+ ',' + department.getName();
+        else
+            return null;
+    }
     
     public static void readFile()
     {
@@ -46,4 +56,27 @@ public class DepartmentFileHandling {
         finalID = departmentID;
         
     }
+    
+    public static void saveToFile(){
+        BufferedWriter fwriter = null;
+        try {
+            fwriter = new BufferedWriter(new FileWriter("DepartmentDetails.csv",true));
+            for (Department dep: depList)
+            {
+                String depDetails = toCSV(dep);
+                fwriter.write(depDetails);
+                fwriter.newLine();
+                fwriter.close(); 
+            }
+        } catch (IOException ex) {
+            System.getLogger(DepartmentFileHandling.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
+        }
+        
+    }
+    
+    public static void deleteDepartment(int id){
+        
+        
+    }
+    
 }
