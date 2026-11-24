@@ -17,12 +17,12 @@ import java.io.IOException;
  * @author maria
  */
 public class DepartmentFileHandling {
-    
+    public static final String DFILENAME = "DepartmentDetails.csv";
     public static int finalID ;
     
     public static String toCSV(Department department){
         if(department != null)
-        return department.getId()+ ',' + department.getName();
+        return department.getId()+ "," + department.getName();
         else
             return null;
     }
@@ -30,9 +30,11 @@ public class DepartmentFileHandling {
     public static void readFile()
     {
          String line;
+         depList.clear();
+         finalID=0;
         try {
            
-            BufferedReader freader = new BufferedReader(new FileReader("DepartmentDetails.csv"));
+            BufferedReader freader = new BufferedReader(new FileReader(DFILENAME));
             while((line=freader.readLine()) != null){
                 parseDetails(line);
                 
@@ -58,25 +60,22 @@ public class DepartmentFileHandling {
     }
     
     public static void saveToFile(){
-        BufferedWriter fwriter = null;
+         
         try {
-            fwriter = new BufferedWriter(new FileWriter("DepartmentDetails.csv",true));
+            BufferedWriter fwriter = new BufferedWriter(new FileWriter(DFILENAME));
             for (Department dep: depList)
             {
                 String depDetails = toCSV(dep);
                 fwriter.write(depDetails);
                 fwriter.newLine();
-                fwriter.close(); 
-            }
+                
+            } fwriter.close();
         } catch (IOException ex) {
             System.getLogger(DepartmentFileHandling.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
         }
         
     }
     
-    public static void deleteDepartment(int id){
-        
-        
-    }
+    
     
 }

@@ -7,7 +7,12 @@ package DepartmentFrontend;
 import DepartmentBackend.Department;
 import DepartmentBackend.DepartmentFileHandling;
 import DepartmentBackend.DepartmentManager;
+import DepartmentBackend.Exceptions.DepartmentInUseException;
+import DepartmentBackend.Exceptions.DepartmentNotFoundException;
+import EmployeeBackend.EmployeeFileHandler;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -23,14 +28,17 @@ public class ViewDepartments extends javax.swing.JFrame {
      */
     public ViewDepartments() {
         initComponents();
+        EmployeeFileHandler.loadFile();
         fillTable();
+        departmentsTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
     }
     
     public void fillTable(){
         DepartmentFileHandling.readFile();
         ArrayList<Department> deps= DepartmentManager.depList;
         
-        DefaultTableModel m= (DefaultTableModel)jTable1.getModel();
+        DefaultTableModel m= (DefaultTableModel)departmentsTable.getModel();
+        m.setRowCount(0);
         for (Department d : deps) {
             m.addRow(new Object[]{d.getId(),d.getName()});
         }
@@ -47,13 +55,13 @@ public class ViewDepartments extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        departmentsTable = new javax.swing.JTable();
         DeleteButton = new javax.swing.JButton();
         BackButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        departmentsTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -61,7 +69,7 @@ public class ViewDepartments extends javax.swing.JFrame {
                 "Department_ID", "Department_Name"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(departmentsTable);
 
         DeleteButton.setBackground(new java.awt.Color(255, 51, 0));
         DeleteButton.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
@@ -105,11 +113,33 @@ public class ViewDepartments extends javax.swing.JFrame {
     private void BackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackButtonActionPerformed
         OptionDepartmentScreen b = new OptionDepartmentScreen();
         b.setVisible(true);
-        this.setVisible(false);
+        this.dispose();
     }//GEN-LAST:event_BackButtonActionPerformed
 
     private void DeleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteButtonActionPerformed
-        // TODO add your handling code here:
+        int row = departmentsTable.getSelectedRow();
+        if ( row == -1){
+            JOptionPane.showMessageDialog(this, "Select a department to delete.");
+            return;
+        }
+        int id = Integer.parseInt(departmentsTable.getValueAt(row,0).toString());
+        String name = departmentsTable.getValueAt(row, 1).toString();
+        
+        int choice = JOptionPane.showConfirmDialog(this, "Are you sure you want to delete department \"" + name + "\"?", "Confirm delete", JOptionPane.YES_NO_OPTION);
+        if(choice != JOptionPane.YES_OPTION){
+            return;
+        }
+        
+        try{
+            DepartmentManager.deleteDepartment(id);
+            fillTable();
+            JOptionPane.showMessageDialog(this, "Department Deleted successfully.");
+        }catch(DepartmentNotFoundException e){
+            JOptionPane.showMessageDialog(this, e.getMessage());
+        }catch(DepartmentInUseException e){
+            JOptionPane.showMessageDialog(this, e.getMessage());
+        }
+        
     }//GEN-LAST:event_DeleteButtonActionPerformed
 
     /**
@@ -140,7 +170,7 @@ public class ViewDepartments extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BackButton;
     private javax.swing.JButton DeleteButton;
+    private javax.swing.JTable departmentsTable;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 }
