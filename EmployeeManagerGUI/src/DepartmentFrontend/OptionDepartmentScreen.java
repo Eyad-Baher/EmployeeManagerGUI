@@ -30,7 +30,7 @@ public class OptionDepartmentScreen extends javax.swing.JFrame {
 
         jButton1 = new javax.swing.JButton();
         jComboBox1 = new javax.swing.JComboBox<>();
-        ViewDepartmentsButton = new javax.swing.JButton();
+        viewDepartmentsButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
 
@@ -45,11 +45,11 @@ public class OptionDepartmentScreen extends javax.swing.JFrame {
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jComboBox1.addActionListener(this::jComboBox1ActionPerformed);
 
-        ViewDepartmentsButton.setBackground(new java.awt.Color(102, 255, 204));
-        ViewDepartmentsButton.setFont(new java.awt.Font("Segoe UI Semibold", 2, 14)); // NOI18N
-        ViewDepartmentsButton.setForeground(new java.awt.Color(0, 0, 153));
-        ViewDepartmentsButton.setText("View Departments");
-        ViewDepartmentsButton.addActionListener(this::ViewDepartmentsButtonActionPerformed);
+        viewDepartmentsButton.setBackground(new java.awt.Color(102, 255, 204));
+        viewDepartmentsButton.setFont(new java.awt.Font("Segoe UI Semibold", 2, 14)); // NOI18N
+        viewDepartmentsButton.setForeground(new java.awt.Color(0, 0, 153));
+        viewDepartmentsButton.setText("View Departments");
+        viewDepartmentsButton.addActionListener(this::viewDepartmentsButtonActionPerformed);
 
         jLabel1.setText("jLabel1");
 
@@ -66,7 +66,7 @@ public class OptionDepartmentScreen extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel2)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(ViewDepartmentsButton)
+                        .addComponent(viewDepartmentsButton)
                         .addGap(18, 18, 18)
                         .addComponent(jButton1)
                         .addGap(48, 48, 48)))
@@ -85,7 +85,7 @@ public class OptionDepartmentScreen extends javax.swing.JFrame {
                 .addComponent(jLabel2)
                 .addGap(99, 99, 99)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(ViewDepartmentsButton)
+                    .addComponent(viewDepartmentsButton)
                     .addComponent(jButton1)
                     .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -100,12 +100,12 @@ public class OptionDepartmentScreen extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void ViewDepartmentsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ViewDepartmentsButtonActionPerformed
+    private void viewDepartmentsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewDepartmentsButtonActionPerformed
         // TODO add your handling code here:
         ViewDepartments view = new ViewDepartments();
         view.setVisible(true);
         this.setVisible(false);
-    }//GEN-LAST:event_ViewDepartmentsButtonActionPerformed
+    }//GEN-LAST:event_viewDepartmentsButtonActionPerformed
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         // TODO add your handling code here:
@@ -137,10 +137,10 @@ public class OptionDepartmentScreen extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton ViewDepartmentsButton;
     private javax.swing.JButton jButton1;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JButton viewDepartmentsButton;
     // End of variables declaration//GEN-END:variables
 }

@@ -56,8 +56,8 @@ public class ViewDepartments extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         departmentsTable = new javax.swing.JTable();
-        DeleteButton = new javax.swing.JButton();
-        BackButton = new javax.swing.JButton();
+        deleteButton = new javax.swing.JButton();
+        backButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -71,13 +71,13 @@ public class ViewDepartments extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(departmentsTable);
 
-        DeleteButton.setBackground(new java.awt.Color(255, 51, 0));
-        DeleteButton.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
-        DeleteButton.setText("Delete");
-        DeleteButton.addActionListener(this::DeleteButtonActionPerformed);
+        deleteButton.setBackground(new java.awt.Color(255, 51, 0));
+        deleteButton.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
+        deleteButton.setText("Delete");
+        deleteButton.addActionListener(this::deleteButtonActionPerformed);
 
-        BackButton.setText("<-- Back");
-        BackButton.addActionListener(this::BackButtonActionPerformed);
+        backButton.setText("<-- Back");
+        backButton.addActionListener(this::backButtonActionPerformed);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -90,9 +90,9 @@ public class ViewDepartments extends javax.swing.JFrame {
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(87, 87, 87)
-                        .addComponent(BackButton)
+                        .addComponent(backButton)
                         .addGap(78, 78, 78)
-                        .addComponent(DeleteButton)))
+                        .addComponent(deleteButton)))
                 .addContainerGap(19, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -102,21 +102,21 @@ public class ViewDepartments extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(DeleteButton)
-                    .addComponent(BackButton))
+                    .addComponent(deleteButton)
+                    .addComponent(backButton))
                 .addContainerGap(22, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void BackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackButtonActionPerformed
+    private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
         OptionDepartmentScreen b = new OptionDepartmentScreen();
         b.setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_BackButtonActionPerformed
+    }//GEN-LAST:event_backButtonActionPerformed
 
-    private void DeleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteButtonActionPerformed
+    private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
         int row = departmentsTable.getSelectedRow();
         if ( row == -1){
             JOptionPane.showMessageDialog(this, "Select a department to delete.");
@@ -140,7 +140,7 @@ public class ViewDepartments extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, e.getMessage());
         }
         
-    }//GEN-LAST:event_DeleteButtonActionPerformed
+    }//GEN-LAST:event_deleteButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -168,8 +168,8 @@ public class ViewDepartments extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton BackButton;
-    private javax.swing.JButton DeleteButton;
+    private javax.swing.JButton backButton;
+    private javax.swing.JButton deleteButton;
     private javax.swing.JTable departmentsTable;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
