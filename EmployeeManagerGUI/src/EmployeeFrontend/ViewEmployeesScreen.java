@@ -24,14 +24,19 @@ public class ViewEmployeesScreen extends javax.swing.JFrame {
      * Creates new form ViewEmployeesScreen
      */
     
-    private DefaultTableModel m;
-    private TableRowSorter<DefaultTableModel> sorter;
     
+    public ViewEmployeesScreen()  {
+        initComponents();
+        
+        fillTable();
+        
+    }
+
         
     public void fillTable() {
         ArrayList<Employee> emps=EmployeeManager.getEmployees();
         
-         m= (DefaultTableModel)employeesTable.getModel();
+        DefaultTableModel m= (DefaultTableModel)employeesTable.getModel();
         for (Employee e : emps) {
             m.addRow(new Object[]{e.getEmployeeID(),e.getFirstName(),e.getLastName(),e.getAge(),e.getDepartment(),e.getEmployeePosition(),e.getEmployeeType()});
         if(e instanceof FullTimeEmployee){
