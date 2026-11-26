@@ -75,6 +75,7 @@ public class ViewEmployeesScreen extends javax.swing.JFrame {
         SearchIDLabel = new javax.swing.JLabel();
         SearchIDField = new javax.swing.JTextField();
         showAllButton = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -93,13 +94,13 @@ public class ViewEmployeesScreen extends javax.swing.JFrame {
 
         employeesTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Employee ID", "First Name", "Last Name", "Age", "Department", "Position", "Type", "Basic Salary / Hourly Rate", "Bonus / Hours Worked", "Total Salary"
+                "Employee ID", "First Name", "Last Name", "Age", "Department Name", "Department ID", "Position", "Type", "Basic Salary / Hourly Rate", "Bonus / Hours Worked", "Total Salary"
             }
         ));
         employeesTable.addAncestorListener(new javax.swing.event.AncestorListener() {
@@ -113,10 +114,15 @@ public class ViewEmployeesScreen extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(employeesTable);
         if (employeesTable.getColumnModel().getColumnCount() > 0) {
-            employeesTable.getColumnModel().getColumn(7).setMinWidth(150);
-            employeesTable.getColumnModel().getColumn(7).setMaxWidth(150);
-            employeesTable.getColumnModel().getColumn(8).setMinWidth(140);
-            employeesTable.getColumnModel().getColumn(8).setMaxWidth(140);
+            employeesTable.getColumnModel().getColumn(4).setMinWidth(120);
+            employeesTable.getColumnModel().getColumn(4).setPreferredWidth(120);
+            employeesTable.getColumnModel().getColumn(4).setMaxWidth(120);
+            employeesTable.getColumnModel().getColumn(5).setMinWidth(120);
+            employeesTable.getColumnModel().getColumn(5).setMaxWidth(120);
+            employeesTable.getColumnModel().getColumn(8).setMinWidth(150);
+            employeesTable.getColumnModel().getColumn(8).setMaxWidth(150);
+            employeesTable.getColumnModel().getColumn(9).setMinWidth(140);
+            employeesTable.getColumnModel().getColumn(9).setMaxWidth(140);
         }
 
         viewEmployeesLabel.setFont(new java.awt.Font("Serif", 3, 24)); // NOI18N
@@ -126,44 +132,51 @@ public class ViewEmployeesScreen extends javax.swing.JFrame {
 
         SearchIDField.addActionListener(this::SearchIDFieldActionPerformed);
 
-        showAllButton.setBackground(new java.awt.Color(0, 102, 204));
+        showAllButton.setBackground(new java.awt.Color(51, 102, 255));
         showAllButton.setText("Show all");
         showAllButton.addActionListener(this::showAllButtonActionPerformed);
+
+        jButton1.setBackground(new java.awt.Color(0, 204, 51));
+        jButton1.setText("Refresh");
+        jButton1.addActionListener(this::jButton1ActionPerformed);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(317, 317, 317)
+                .addComponent(viewEmployeesLabel)
+                .addContainerGap(547, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane2)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(SearchIDLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(SearchIDField, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(showAllButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(317, 317, 317)
-                .addComponent(viewEmployeesLabel)
-                .addContainerGap(376, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(37, Short.MAX_VALUE)
+                .addContainerGap(27, Short.MAX_VALUE)
                 .addComponent(viewEmployeesLabel)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(SearchIDLabel)
                     .addComponent(SearchIDField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(showAllButton))
-                .addGap(18, 18, 18)
+                    .addComponent(showAllButton)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(12, 12, 12))
         );
 
         pack();
@@ -201,6 +214,12 @@ public class ViewEmployeesScreen extends javax.swing.JFrame {
 
     }//GEN-LAST:event_showAllButtonActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        fillTable();
+
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -230,6 +249,7 @@ public class ViewEmployeesScreen extends javax.swing.JFrame {
     private javax.swing.JTextField SearchIDField;
     private javax.swing.JLabel SearchIDLabel;
     private javax.swing.JTable employeesTable;
+    private javax.swing.JButton jButton1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
