@@ -30,101 +30,111 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="1" attributes="0">
-              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-              <Component id="addEmployeeLabel" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="249" max="-2" attributes="0"/>
-          </Group>
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="enterIDLabel" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="idAutomaticGeneratedLabel" min="-2" pref="150" max="-2" attributes="0"/>
-                          </Group>
-                          <Component id="CreateButton1" alignment="0" min="-2" pref="183" max="-2" attributes="0"/>
-                      </Group>
+                      <Component id="enterIDLabel" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="idAutomaticGeneratedLabel" min="-2" pref="150" max="-2" attributes="0"/>
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="103" groupAlignment="1" attributes="0">
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="employeeTypeLabel" max="32767" attributes="0"/>
-                                  <Component id="positionLabel" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="LastNameLabel" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="ageLabel" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="fistNameLabel" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="salaryLabel" max="32767" attributes="0"/>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="departementLabel1" max="32767" attributes="0"/>
-                                      <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
+                                  <Group type="102" attributes="0">
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Group type="102" attributes="0">
+                                              <Group type="103" groupAlignment="0" attributes="0">
+                                                  <Component id="employeeTypeLabel" max="32767" attributes="0"/>
+                                                  <Component id="positionLabel" alignment="0" max="32767" attributes="0"/>
+                                                  <Component id="LastNameLabel" alignment="0" max="32767" attributes="0"/>
+                                                  <Component id="ageLabel" alignment="0" max="32767" attributes="0"/>
+                                                  <Component id="fistNameLabel" alignment="0" max="32767" attributes="0"/>
+                                                  <Component id="salaryLabel" max="32767" attributes="0"/>
+                                                  <Group type="102" alignment="0" attributes="0">
+                                                      <Component id="departementLabel1" max="32767" attributes="0"/>
+                                                      <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
+                                                  </Group>
+                                              </Group>
+                                              <EmptySpace min="-2" pref="83" max="-2" attributes="0"/>
+                                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                                  <Component id="lastNameField" alignment="0" max="32767" attributes="0"/>
+                                                  <Component id="ageField" alignment="0" max="32767" attributes="0"/>
+                                                  <Component id="comboBoxDeppartement" alignment="0" pref="183" max="32767" attributes="0"/>
+                                                  <Component id="positionField" alignment="0" max="32767" attributes="0"/>
+                                                  <Component id="employeeTypeComboBox" alignment="0" max="32767" attributes="0"/>
+                                                  <Component id="salaryField" alignment="0" max="32767" attributes="0"/>
+                                                  <Component id="HoursWorkedField" alignment="0" max="32767" attributes="0"/>
+                                                  <Component id="firstNameField" max="32767" attributes="0"/>
+                                              </Group>
+                                          </Group>
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <Component id="HoursworkedLabel" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace min="-2" pref="352" max="-2" attributes="0"/>
+                                          </Group>
+                                      </Group>
+                                      <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" attributes="0">
+                                      <Component id="CreateButton1" min="-2" pref="183" max="-2" attributes="0"/>
+                                      <EmptySpace max="32767" attributes="0"/>
                                   </Group>
                               </Group>
-                              <EmptySpace min="-2" pref="83" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                  <Component id="lastNameField" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="ageField" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="comboBoxDeppartement" alignment="0" pref="183" max="32767" attributes="0"/>
-                                  <Component id="positionField" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="employeeTypeComboBox" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="salaryField" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="HoursWorkedField" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="firstNameField" max="32767" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="departementLabel" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Component id="departmentIDfield" min="-2" pref="150" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace min="111" pref="111" max="-2" attributes="0"/>
+                                      <Component id="ClearButton" min="-2" pref="183" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" attributes="0">
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="BonusLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="HourlyRateLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="HourlyRateField" min="-2" pref="150" max="-2" attributes="0"/>
+                                          <Component id="BonusField" min="-2" pref="150" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
                               </Group>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="HoursworkedLabel" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="352" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="departementLabel" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="departmentIDfield" min="-2" pref="150" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="111" pref="111" max="-2" attributes="0"/>
-                              <Component id="ClearButton" min="-2" pref="183" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="BonusLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="HourlyRateLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="HourlyRateField" min="-2" pref="150" max="-2" attributes="0"/>
-                                  <Component id="BonusField" min="-2" pref="150" max="-2" attributes="0"/>
-                              </Group>
+                              <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
+                              <Component id="BackButton" min="-2" pref="99" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="addEmployeeLabel" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="168" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace pref="32" max="32767" attributes="0"/>
                   </Group>
               </Group>
               <Component id="jLabel1" min="-2" pref="134" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="73" max="-2" attributes="0"/>
+              <EmptySpace min="-2" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
-      <Group type="103" groupAlignment="0" attributes="0">
+      <Group type="103" groupAlignment="1" attributes="0">
           <Group type="102" attributes="0">
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
+              <Component id="BackButton" min="-2" pref="67" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
+              <Component id="addEmployeeLabel" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="0" pref="500" max="32767" attributes="0"/>
+                  <Group type="102" alignment="1" attributes="0">
                       <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
                   </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="addEmployeeLabel" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="102" alignment="1" attributes="0">
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="enterIDLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="idAutomaticGeneratedLabel" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -169,7 +179,7 @@
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="salaryLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="salaryField" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -182,7 +192,7 @@
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="CreateButton1" min="-2" pref="71" max="-2" attributes="0"/>
                           </Group>
-                          <Group type="102" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="BonusLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="BonusField" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -196,7 +206,7 @@
                               <Component id="ClearButton" min="-2" pref="71" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
           </Group>
@@ -553,6 +563,7 @@
         <Property name="text" type="java.lang.String" value="Clear Details"/>
       </Properties>
       <Events>
+        <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="ClearButtonStateChanged"/>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ClearButtonActionPerformed"/>
       </Events>
     </Component>
@@ -568,6 +579,20 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CreateButton1ActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="BackButton">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="0" green="0" red="cc" type="rgb"/>
+        </Property>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Segoe UI" size="14" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="&lt;= Back"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BackButtonActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>
