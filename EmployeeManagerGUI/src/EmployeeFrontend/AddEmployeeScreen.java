@@ -232,7 +232,7 @@ public class AddEmployeeScreen extends javax.swing.JFrame {
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(departementLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addGap(6, 6, 6)))
-                                .addGap(92, 92, 92)
+                                .addGap(83, 83, 83)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addComponent(lastNameField, javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(ageField, javax.swing.GroupLayout.Alignment.LEADING)
@@ -349,13 +349,6 @@ public class AddEmployeeScreen extends javax.swing.JFrame {
 
     private void lastNameFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lastNameFieldActionPerformed
         // TODO add your handling code here:
-        if (!FrontValidation.validateAnyName(lastNameField.getText())) {
-            lastNameField.setText("");
-            lastNameField.requestFocusInWindow();
-            lastNameField.selectAll();
-            return;
-        }
-
 
 
     }//GEN-LAST:event_lastNameFieldActionPerformed
@@ -401,88 +394,42 @@ public class AddEmployeeScreen extends javax.swing.JFrame {
 
     private void salaryFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salaryFieldActionPerformed
         // TODO add your handling code here:
-        if (FrontValidation.validateNums(salaryField.getText())) {
-            JOptionPane.showMessageDialog(null, "Invalid Salary");
-            salaryField.setText("");
-            salaryField.requestFocusInWindow();
-            salaryField.selectAll();
-            return;
-        }
 
 
-        
     }//GEN-LAST:event_salaryFieldActionPerformed
 
     private void HoursWorkedFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HoursWorkedFieldActionPerformed
         // TODO add your handling code here:
 
-        if (FrontValidation.validateNums(HoursWorkedField.getText())) {
-            JOptionPane.showMessageDialog(null, "Invalid hours worked");
-            HoursWorkedField.setText("");
-            HoursWorkedField.requestFocusInWindow();
-            HoursWorkedField.selectAll();
-            return;
-        }
 
     }//GEN-LAST:event_HoursWorkedFieldActionPerformed
 
     private void BonusFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BonusFieldActionPerformed
         // TODO add your handling code here:
 
-        if (FrontValidation.validateNums(BonusField.getText())) {
-            JOptionPane.showMessageDialog(null, "Invalid bonus salary");
-            BonusField.setText("");
-            BonusField.requestFocusInWindow();
-            BonusField.selectAll();
-            return;
-        }
 
     }//GEN-LAST:event_BonusFieldActionPerformed
 
     private void firstNameFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_firstNameFieldActionPerformed
         // TODO add your handling code here:
 
-        if (!FrontValidation.validateAnyName(firstNameField.getText())) {
-            firstNameField.setText("");
-            firstNameField.requestFocusInWindow();
-            firstNameField.selectAll();
-            return;
-        }
-
-
 
     }//GEN-LAST:event_firstNameFieldActionPerformed
 
     private void ageFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ageFieldActionPerformed
         // TODO add your handling code here:
-        if (!FrontValidation.validateAge(ageField.getText())) {
-            ageField.setText("");
-            ageField.requestFocusInWindow();
-            ageField.selectAll();
-            return;
-        }
 
 
     }//GEN-LAST:event_ageFieldActionPerformed
 
     private void positionFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_positionFieldActionPerformed
         // TODO add your handling code here:
-        if (!FrontValidation.validatePosn(positionField.getText())) {
-            positionField.setText("");
-            positionField.requestFocusInWindow();
-            positionField.selectAll();
-            return;
-        }
-
-        empPosn = positionField.getText();
 
 
     }//GEN-LAST:event_positionFieldActionPerformed
 
     private void departmentIDfieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_departmentIDfieldActionPerformed
         // TODO add your handling code here:
-        
-        empDepID = Integer.parseInt(departmentIDfield.getText());
 
 
     }//GEN-LAST:event_departmentIDfieldActionPerformed
@@ -490,15 +437,7 @@ public class AddEmployeeScreen extends javax.swing.JFrame {
     private void HourlyRateFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HourlyRateFieldActionPerformed
         // TODO add your handling code here:
 
-        if (FrontValidation.validateNums(HourlyRateField.getText())) {
-            JOptionPane.showMessageDialog(null, "Invalid hourly rate");
-            HourlyRateField.setText("");
-            HourlyRateField.requestFocusInWindow();
-            HourlyRateField.selectAll();
-            return;
-        }
 
-        empHourlyRate = Double.parseDouble(HourlyRateField.getText());
     }//GEN-LAST:event_HourlyRateFieldActionPerformed
 
     private void ClearButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ClearButtonActionPerformed
@@ -524,13 +463,110 @@ public class AddEmployeeScreen extends javax.swing.JFrame {
     private void CreateButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CreateButton1ActionPerformed
         // TODO add your handling code here:
 
+        // ---------- First Name ----------
+        if (!FrontValidation.validateAnyName(firstNameField.getText())) {
+            firstNameField.setText("");
+            firstNameField.requestFocusInWindow();
+            firstNameField.selectAll();
+            return;
+        }
+        empFirstName = firstNameField.getText();
+
+        // ---------- Last Name ----------
+        if (!FrontValidation.validateAnyName(lastNameField.getText())) {
+            lastNameField.setText("");
+            lastNameField.requestFocusInWindow();
+            lastNameField.selectAll();
+            return;
+        }
+        empLastName = lastNameField.getText();
+
+        // ---------- Age ----------
+        if (!FrontValidation.validateAge(ageField.getText())) {
+            ageField.setText("");
+            ageField.requestFocusInWindow();
+            ageField.selectAll();
+            return;
+        }
+        empAge = Integer.parseInt(ageField.getText());
+
+        // ---------- Department Name ----------
+        empDepName = String.valueOf(comboBoxDeppartement.getSelectedItem());
+
+        // ---------- Position ----------
+        if (!FrontValidation.validatePosn(positionField.getText())) {
+            positionField.setText("");
+            positionField.requestFocusInWindow();
+            positionField.selectAll();
+            return;
+        }
+        empPosn = positionField.getText();
+
+        // ---------- Department ID ----------
+        try {
+            empDepID = Integer.parseInt(departmentIDfield.getText());
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Invalid department ID");
+            departmentIDfield.setText("");
+            departmentIDfield.requestFocusInWindow();
+            departmentIDfield.selectAll();
+            return;
+        }
+
+        // ---------- Employee Type ----------
+        String str = (String) employeeTypeComboBox.getSelectedItem();
+        if (str.equals("Full-Time")) {
+            empType = "FULL";
+        } else {
+            empType = "PART";
+        }
+
+        if (empType.equals("FULL")) {
+            if (!FrontValidation.validateNums(salaryField.getText())) {
+                JOptionPane.showMessageDialog(null, "Invalid Salary");
+                salaryField.setText("");
+                salaryField.requestFocusInWindow();
+                salaryField.selectAll();
+                return;
+            }
+            empBasicSalary = Double.parseDouble(salaryField.getText());
+
+            if (!FrontValidation.validateNums(BonusField.getText())) {
+                JOptionPane.showMessageDialog(null, "Invalid bonus salary");
+                BonusField.setText("");
+                BonusField.requestFocusInWindow();
+                BonusField.selectAll();
+                return;
+            }
+            empBonus = Double.parseDouble(BonusField.getText());
+
+        } else {
+            if (!FrontValidation.validateNums(HoursWorkedField.getText())) {
+                JOptionPane.showMessageDialog(null, "Invalid hours worked");
+                HoursWorkedField.setText("");
+                HoursWorkedField.requestFocusInWindow();
+                HoursWorkedField.selectAll();
+                return;
+            }
+            empHoursWorked = Double.parseDouble(HoursWorkedField.getText());
+
+            if (!FrontValidation.validateNums(HourlyRateField.getText())) {
+                JOptionPane.showMessageDialog(null, "Invalid hourly rate");
+                HourlyRateField.setText("");
+                HourlyRateField.requestFocusInWindow();
+                HourlyRateField.selectAll();
+                return;
+            }
+            empHourlyRate = Double.parseDouble(HourlyRateField.getText());
+        }
+
         if (empType.equals("FULL") && (empFirstName == null || empFirstName.trim().isEmpty()
                 || empLastName == null || empLastName.trim().isEmpty()
                 || empPosn == null || empPosn.trim().isEmpty()
                 || empDepName == null || empDepName.trim().isEmpty()
                 || empDepID == 0
                 || empType == null || empType.trim().isEmpty()
-                || empAge == 0 || empBasicSalary == 0 || empBonus == 0) ) {
+                || empAge == 0 || empBasicSalary == 0 || empBonus == 0)) {
             JOptionPane.showMessageDialog(
                     this,
                     "Please enter all required fields for Full Time before clicking Create.",
@@ -539,14 +575,14 @@ public class AddEmployeeScreen extends javax.swing.JFrame {
             );
             return;
         }
-        
-         if (empType.equals("PART") && (empFirstName == null || empFirstName.trim().isEmpty()
+
+        if (empType.equals("PART") && (empFirstName == null || empFirstName.trim().isEmpty()
                 || empLastName == null || empLastName.trim().isEmpty()
                 || empPosn == null || empPosn.trim().isEmpty()
                 || empDepName == null || empDepName.trim().isEmpty()
                 || empDepID == 0
                 || empType == null || empType.trim().isEmpty()
-                || empAge == 0 || empHourlyRate == 0 ||  empHoursWorked == 0) ) {
+                || empAge == 0 || empHourlyRate == 0 || empHoursWorked == 0)) {
             JOptionPane.showMessageDialog(
                     this,
                     "Please enter all required fields for Part Time before clicking Create.",
@@ -569,12 +605,14 @@ public class AddEmployeeScreen extends javax.swing.JFrame {
 
             } else if ("PART".equals(empType)) {
                 EmployeeManager.createPartEmployee(empHourlyRate, empHoursWorked, 0, empFirstName, empLastName, empDep, empAge, empPosn, empType);
-                JOptionPane.showConfirmDialog(null, "Employee Added Successfully");
+                JOptionPane.showMessageDialog(null, "Employee Added Successfully","Successful Creation",JOptionPane.OK_OPTION);
                 return;
             }
         }
 
         JOptionPane.showMessageDialog(null, "Unsuccessfull Creation");
+        
+        idAutomaticGeneratedLabel.setText(String.valueOf(Employee.getEmployeeNum()));
     }//GEN-LAST:event_CreateButton1ActionPerformed
 
     /**
