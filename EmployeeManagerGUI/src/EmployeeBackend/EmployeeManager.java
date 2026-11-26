@@ -88,35 +88,41 @@ public class EmployeeManager {
         employees.clear();
     }
 
-public static boolean modifyEmployee(int id, String newType,
-        double basicMonthlySalary, double monthlyBonus,
-        double hourlyRate, double hoursWorked,
-        String firstName, String lastName, Department dept,
-        int age, String position) {
+    public static boolean modifyEmployee(int id, String newType,
+            double basicMonthlySalary, double monthlyBonus,
+            double hourlyRate, double hoursWorked,
+            String firstName, String lastName, Department dept,
+            int age, String position) {
 
-    int index = findByID(id);
-    if (index == -1) return false;
+        int index = findByID(id);
+        if (index == -1) {
+            return false;
+        }
 
-    int oldNum = Employee.getEmployeeNum();
-    Employee updated;
+        int oldNum = Employee.getEmployeeNum();
+        Employee updated;
 
-    if (newType.equals(Employee.FULL)) {
-        updated = new FullTimeEmployee(basicMonthlySalary, monthlyBonus, 0,
-                firstName, lastName, dept, age, position, Employee.FULL);
-    } else if (newType.equals(Employee.PART)) {
-        updated = new PartTimeEmployee(hourlyRate, hoursWorked, 0,
-                firstName, lastName, dept, age, position, Employee.PART);
-    } else {
-        return false; // unsupported type
+        if (newType.equals(Employee.FULL)) {
+            updated = new FullTimeEmployee(basicMonthlySalary, monthlyBonus, 0,
+                    firstName, lastName, dept, age, position, Employee.FULL);
+        } else if (newType.equals(Employee.PART)) {
+            updated = new PartTimeEmployee(hourlyRate, hoursWorked, 0,
+                    firstName, lastName, dept, age, position, Employee.PART);
+        } else {
+            return false; // unsupported type
+        }
+
+        updated.setEmployeeID(id);
+        Employee.setEmployeeNum(oldNum);
+        updated.calcSalary();
+
+        employees.set(index, updated);
+        saveAll();
+        return true;
     }
 
-    updated.setEmployeeID(id);
-    Employee.setEmployeeNum(oldNum);
-    updated.calcSalary();
-
-    employees.set(index, updated);
-    saveAll();
-    return true;
-}
+    public static int getSize() {
+        return employees.size();
+    }
 
 }

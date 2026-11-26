@@ -356,7 +356,6 @@ public class AddEmployeeScreen extends javax.swing.JFrame {
             return;
         }
 
-        empLastName = lastNameField.getText();
 
 
     }//GEN-LAST:event_lastNameFieldActionPerformed
@@ -410,8 +409,8 @@ public class AddEmployeeScreen extends javax.swing.JFrame {
             return;
         }
 
-        empBasicSalary = Double.parseDouble(salaryField.getText());
 
+        
     }//GEN-LAST:event_salaryFieldActionPerformed
 
     private void HoursWorkedFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HoursWorkedFieldActionPerformed
@@ -425,7 +424,6 @@ public class AddEmployeeScreen extends javax.swing.JFrame {
             return;
         }
 
-        empHoursWorked = Double.parseDouble(HoursWorkedField.getText());
     }//GEN-LAST:event_HoursWorkedFieldActionPerformed
 
     private void BonusFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BonusFieldActionPerformed
@@ -439,7 +437,6 @@ public class AddEmployeeScreen extends javax.swing.JFrame {
             return;
         }
 
-        empBonus = Double.parseDouble(BonusField.getText());
     }//GEN-LAST:event_BonusFieldActionPerformed
 
     private void firstNameFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_firstNameFieldActionPerformed
@@ -452,7 +449,6 @@ public class AddEmployeeScreen extends javax.swing.JFrame {
             return;
         }
 
-        empFirstName = firstNameField.getText();
 
 
     }//GEN-LAST:event_firstNameFieldActionPerformed
@@ -466,7 +462,6 @@ public class AddEmployeeScreen extends javax.swing.JFrame {
             return;
         }
 
-        empAge = Integer.parseInt(ageField.getText().trim());
 
     }//GEN-LAST:event_ageFieldActionPerformed
 
@@ -486,6 +481,8 @@ public class AddEmployeeScreen extends javax.swing.JFrame {
 
     private void departmentIDfieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_departmentIDfieldActionPerformed
         // TODO add your handling code here:
+        
+        empDepID = Integer.parseInt(departmentIDfield.getText());
 
 
     }//GEN-LAST:event_departmentIDfieldActionPerformed
@@ -527,17 +524,32 @@ public class AddEmployeeScreen extends javax.swing.JFrame {
     private void CreateButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CreateButton1ActionPerformed
         // TODO add your handling code here:
 
-        if (empFirstName == null || empFirstName.trim().isEmpty()
+        if (empType.equals("FULL") && (empFirstName == null || empFirstName.trim().isEmpty()
                 || empLastName == null || empLastName.trim().isEmpty()
                 || empPosn == null || empPosn.trim().isEmpty()
                 || empDepName == null || empDepName.trim().isEmpty()
                 || empDepID == 0
                 || empType == null || empType.trim().isEmpty()
-                || empAge == 0
-                || empBasicSalary == 0) {
+                || empAge == 0 || empBasicSalary == 0 || empBonus == 0) ) {
             JOptionPane.showMessageDialog(
                     this,
-                    "Please enter all required fields before clicking Create.",
+                    "Please enter all required fields for Full Time before clicking Create.",
+                    "Incomplete Input",
+                    javax.swing.JOptionPane.WARNING_MESSAGE
+            );
+            return;
+        }
+        
+         if (empType.equals("PART") && (empFirstName == null || empFirstName.trim().isEmpty()
+                || empLastName == null || empLastName.trim().isEmpty()
+                || empPosn == null || empPosn.trim().isEmpty()
+                || empDepName == null || empDepName.trim().isEmpty()
+                || empDepID == 0
+                || empType == null || empType.trim().isEmpty()
+                || empAge == 0 || empHourlyRate == 0 ||  empHoursWorked == 0) ) {
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Please enter all required fields for Part Time before clicking Create.",
                     "Incomplete Input",
                     javax.swing.JOptionPane.WARNING_MESSAGE
             );
