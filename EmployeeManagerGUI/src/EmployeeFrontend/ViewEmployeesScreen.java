@@ -29,6 +29,7 @@ public class ViewEmployeesScreen extends javax.swing.JFrame {
 
     public ViewEmployeesScreen() {
         initComponents();
+        employeesTable.setDefaultEditor(Object.class, null);
 
         m = (DefaultTableModel) employeesTable.getModel();
         sorter = new TableRowSorter<>(m);
@@ -58,6 +59,8 @@ public class ViewEmployeesScreen extends javax.swing.JFrame {
 
     }
 
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
