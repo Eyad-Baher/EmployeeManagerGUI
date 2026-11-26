@@ -21,12 +21,18 @@ public class ViewEmployeesScreen extends javax.swing.JFrame {
     /**
      * Creates new form ViewEmployeesScreen
      */
-    
+    public ViewEmployeesScreen()  {
+        initComponents();
+        
+        fillTable();
+        
+    }
+
         
     public void fillTable() {
         ArrayList<Employee> emps=EmployeeManager.getEmployees();
         
-        DefaultTableModel m= (DefaultTableModel)jTable1.getModel();
+        DefaultTableModel m= (DefaultTableModel)employeesTable.getModel();
         for (Employee e : emps) {
             m.addRow(new Object[]{e.getEmployeeID(),e.getFirstName(),e.getLastName(),e.getAge(),e.getDepartment(),e.getEmployeePosition(),e.getEmployeeType()});
         if(e instanceof FullTimeEmployee){
@@ -106,13 +112,13 @@ public class ViewEmployeesScreen extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane2)
-                .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
                 .addGap(325, 325, 325)
                 .addComponent(viewEmployeesLabel)
                 .addContainerGap(368, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane2)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -120,7 +126,7 @@ public class ViewEmployeesScreen extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(viewEmployeesLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 505, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 504, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
