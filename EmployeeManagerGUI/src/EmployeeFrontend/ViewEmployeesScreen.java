@@ -9,7 +9,9 @@ import java.util.ArrayList;
 import EmployeeBackend.EmployeeManager;
 import EmployeeBackend.FullTimeEmployee;
 import EmployeeBackend.PartTimeEmployee;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 /**
  *
  * @author abdel
@@ -22,11 +24,14 @@ public class ViewEmployeesScreen extends javax.swing.JFrame {
      * Creates new form ViewEmployeesScreen
      */
     
+    private DefaultTableModel m;
+    private TableRowSorter<DefaultTableModel> sorter;
+    
         
     public void fillTable() {
         ArrayList<Employee> emps=EmployeeManager.getEmployees();
         
-        DefaultTableModel m= (DefaultTableModel)jTable1.getModel();
+         m= (DefaultTableModel)employeesTable.getModel();
         for (Employee e : emps) {
             m.addRow(new Object[]{e.getEmployeeID(),e.getFirstName(),e.getLastName(),e.getAge(),e.getDepartment(),e.getEmployeePosition(),e.getEmployeeType()});
         if(e instanceof FullTimeEmployee){
@@ -54,6 +59,8 @@ public class ViewEmployeesScreen extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         employeesTable = new javax.swing.JTable();
         viewEmployeesLabel = new javax.swing.JLabel();
+        SearchIDLabel = new javax.swing.JLabel();
+        SearchIDField = new javax.swing.JTextField();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -101,26 +108,40 @@ public class ViewEmployeesScreen extends javax.swing.JFrame {
         viewEmployeesLabel.setFont(new java.awt.Font("Serif", 3, 24)); // NOI18N
         viewEmployeesLabel.setText("Employees available ");
 
+        SearchIDLabel.setText("Search for Employee by ID:");
+
+        SearchIDField.addActionListener(this::SearchIDFieldActionPerformed);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(SearchIDLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(SearchIDField, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
-                .addGap(325, 325, 325)
+                .addGap(317, 317, 317)
                 .addComponent(viewEmployeesLabel)
-                .addContainerGap(368, Short.MAX_VALUE))
+                .addContainerGap(376, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(38, Short.MAX_VALUE)
                 .addComponent(viewEmployeesLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 505, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(SearchIDLabel)
+                    .addComponent(SearchIDField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -130,6 +151,23 @@ public class ViewEmployeesScreen extends javax.swing.JFrame {
     private void employeesTableAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_employeesTableAncestorAdded
         // TODO add your handling code here:
     }//GEN-LAST:event_employeesTableAncestorAdded
+
+    private void SearchIDFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchIDFieldActionPerformed
+        // TODO add your handling code here:
+        
+        String IDStr = SearchIDField.getText();
+        
+        if(!FrontValidation.validateNums(IDStr))
+        {
+            JOptionPane.showMessageDialog(null, "Invalid ID", "Search Failed", JOptionPane.WARNING_MESSAGE);
+            SearchIDField.requestFocus();
+            SearchIDField.selectAll();
+            SearchIDField.setText("");
+            return;
+        }
+        
+        int searchID = Integer.parseInt(IDStr);
+    }//GEN-LAST:event_SearchIDFieldActionPerformed
 
     /**
      * @param args the command line arguments
@@ -157,6 +195,8 @@ public class ViewEmployeesScreen extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField SearchIDField;
+    private javax.swing.JLabel SearchIDLabel;
     private javax.swing.JTable employeesTable;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
