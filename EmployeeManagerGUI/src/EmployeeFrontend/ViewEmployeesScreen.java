@@ -12,43 +12,51 @@ import EmployeeBackend.PartTimeEmployee;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
+
 /**
  *
  * @author abdel
  */
 public class ViewEmployeesScreen extends javax.swing.JFrame {
-    
+
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(ViewEmployeesScreen.class.getName());
 
     /**
      * Creates new form ViewEmployeesScreen
      */
-    
-    
-    public ViewEmployeesScreen()  {
+    private DefaultTableModel m;
+    private TableRowSorter<DefaultTableModel> sorter;
+
+    public ViewEmployeesScreen() {
         initComponents();
-        
+
+        m = (DefaultTableModel) employeesTable.getModel();
+        sorter = new TableRowSorter<>(m);
+        employeesTable.setRowSorter(sorter);
+
         fillTable();
-        
+
     }
 
-        
     public void fillTable() {
-        ArrayList<Employee> emps=EmployeeManager.getEmployees();
-        
-        DefaultTableModel m= (DefaultTableModel)employeesTable.getModel();
-        for (Employee e : emps) {
-            m.addRow(new Object[]{e.getEmployeeID(),e.getFirstName(),e.getLastName(),e.getAge(),e.getDepartment(),e.getEmployeePosition(),e.getEmployeeType()});
-        if(e instanceof FullTimeEmployee){
-          m.addRow(new Object[]{e.getEmployeeID(),e.getFirstName(),e.getLastName(),e.getAge(),e.getDepartment(),e.getEmployeePosition(),e.getEmployeeType(),((FullTimeEmployee) e).getBasicMonthlySalary(),((FullTimeEmployee) e).getMonthlyBonus(),e.calcSalary()});
-        }
-        else {
-           m.addRow(new Object[]{e.getEmployeeID(),e.getFirstName(),e.getLastName(),e.getAge(),e.getDepartment(),e.getEmployeePosition(),e.getEmployeeType(),((PartTimeEmployee) e).getHourlyPaymentRate(),((PartTimeEmployee) e).getHoursWorked(),e.calcSalary()});
-        }
-        }
-        
-    }
+        ArrayList<Employee> emps = EmployeeManager.getEmployees();
 
+        if (m == null) {
+            m = (DefaultTableModel) employeesTable.getModel();
+        }
+        m.setRowCount(0);
+
+        DefaultTableModel m = (DefaultTableModel) employeesTable.getModel();
+        for (Employee e : emps) {
+            m.addRow(new Object[]{e.getEmployeeID(), e.getFirstName(), e.getLastName(), e.getAge(), e.getDepartment(), e.getEmployeePosition(), e.getEmployeeType()});
+            if (e instanceof FullTimeEmployee) {
+                m.addRow(new Object[]{e.getEmployeeID(), e.getFirstName(), e.getLastName(), e.getAge(), e.getDepartment(), e.getEmployeePosition(), e.getEmployeeType(), ((FullTimeEmployee) e).getBasicMonthlySalary(), ((FullTimeEmployee) e).getMonthlyBonus(), e.calcSalary()});
+            } else {
+                m.addRow(new Object[]{e.getEmployeeID(), e.getFirstName(), e.getLastName(), e.getAge(), e.getDepartment(), e.getEmployeePosition(), e.getEmployeeType(), ((PartTimeEmployee) e).getHourlyPaymentRate(), ((PartTimeEmployee) e).getHoursWorked(), e.calcSalary()});
+            }
+        }
+
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -66,6 +74,7 @@ public class ViewEmployeesScreen extends javax.swing.JFrame {
         viewEmployeesLabel = new javax.swing.JLabel();
         SearchIDLabel = new javax.swing.JLabel();
         SearchIDField = new javax.swing.JTextField();
+        showAllButton = new javax.swing.JButton();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -117,6 +126,10 @@ public class ViewEmployeesScreen extends javax.swing.JFrame {
 
         SearchIDField.addActionListener(this::SearchIDFieldActionPerformed);
 
+        showAllButton.setBackground(new java.awt.Color(0, 102, 204));
+        showAllButton.setText("Show all");
+        showAllButton.addActionListener(this::showAllButtonActionPerformed);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -129,6 +142,8 @@ public class ViewEmployeesScreen extends javax.swing.JFrame {
                         .addComponent(SearchIDLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(SearchIDField, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(showAllButton)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
@@ -139,12 +154,13 @@ public class ViewEmployeesScreen extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(38, Short.MAX_VALUE)
+                .addContainerGap(37, Short.MAX_VALUE)
                 .addComponent(viewEmployeesLabel)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(SearchIDLabel)
-                    .addComponent(SearchIDField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(SearchIDField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(showAllButton))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -159,20 +175,31 @@ public class ViewEmployeesScreen extends javax.swing.JFrame {
 
     private void SearchIDFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchIDFieldActionPerformed
         // TODO add your handling code here:
-        
+
         String IDStr = SearchIDField.getText();
-        
-        if(!FrontValidation.validateNums(IDStr))
-        {
+
+        if (!FrontValidation.validateNums(IDStr)) {
             JOptionPane.showMessageDialog(null, "Invalid ID", "Search Failed", JOptionPane.WARNING_MESSAGE);
             SearchIDField.requestFocus();
             SearchIDField.selectAll();
             SearchIDField.setText("");
             return;
         }
-        
+
         int searchID = Integer.parseInt(IDStr);
+
+        sorter.setRowFilter(
+                javax.swing.RowFilter.regexFilter("^" + java.util.regex.Pattern.quote(String.valueOf(searchID)) + "$", 0));
     }//GEN-LAST:event_SearchIDFieldActionPerformed
+
+    private void showAllButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showAllButtonActionPerformed
+        // TODO add your handling code here:
+
+        SearchIDField.setText("");
+        sorter.setRowFilter(null);
+
+
+    }//GEN-LAST:event_showAllButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -206,6 +233,7 @@ public class ViewEmployeesScreen extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
+    private javax.swing.JButton showAllButton;
     private javax.swing.JLabel viewEmployeesLabel;
     // End of variables declaration//GEN-END:variables
 }
