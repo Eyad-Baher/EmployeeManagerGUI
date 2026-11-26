@@ -39,25 +39,20 @@ public class ViewEmployeesScreen extends javax.swing.JFrame {
 
     }
 
-    public void fillTable() {
-        ArrayList<Employee> emps = EmployeeManager.getEmployees();
-
-        if (m == null) {
-            m = (DefaultTableModel) employeesTable.getModel();
+   public void fillTable() {
+    m.setRowCount(0);
+    for (Employee e : EmployeeManager.getEmployees()) {
+        if (e instanceof FullTimeEmployee ) {
+            m.addRow(new Object[]{e.getEmployeeID(), e.getFirstName(), e.getLastName(), e.getAge(),
+                    e.getDepartment().getDepartmentName(), e.getDepartment().getDepartmentID(), e.getEmployeePosition(), e.getEmployeeType(),
+                    ((FullTimeEmployee)e).getBasicMonthlySalary(), ((FullTimeEmployee)e).getMonthlyBonus(), e.calcSalary()});
+        } else if (e instanceof PartTimeEmployee ) {
+            m.addRow(new Object[]{e.getEmployeeID(), e.getFirstName(), e.getLastName(), e.getAge(),
+                    e.getDepartment().getDepartmentName(), e.getDepartment().getDepartmentID(), e.getEmployeePosition(), e.getEmployeeType(),
+                    ((PartTimeEmployee)e).getHourlyPaymentRate(), ((PartTimeEmployee)e).getHoursWorked(), e.calcSalary()});
         }
-        m.setRowCount(0);
-
-        DefaultTableModel m = (DefaultTableModel) employeesTable.getModel();
-        for (Employee e : emps) {
-            m.addRow(new Object[]{e.getEmployeeID(), e.getFirstName(), e.getLastName(), e.getAge(), e.getDepartment(), e.getEmployeePosition(), e.getEmployeeType()});
-            if (e instanceof FullTimeEmployee) {
-                m.addRow(new Object[]{e.getEmployeeID(), e.getFirstName(), e.getLastName(), e.getAge(), e.getDepartment(), e.getEmployeePosition(), e.getEmployeeType(), ((FullTimeEmployee) e).getBasicMonthlySalary(), ((FullTimeEmployee) e).getMonthlyBonus(), e.calcSalary()});
-            } else {
-                m.addRow(new Object[]{e.getEmployeeID(), e.getFirstName(), e.getLastName(), e.getAge(), e.getDepartment(), e.getEmployeePosition(), e.getEmployeeType(), ((PartTimeEmployee) e).getHourlyPaymentRate(), ((PartTimeEmployee) e).getHoursWorked(), e.calcSalary()});
-            }
-        }
-
     }
+}
 
     
     
