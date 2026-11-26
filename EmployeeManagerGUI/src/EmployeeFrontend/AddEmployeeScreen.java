@@ -456,6 +456,21 @@ public class AddEmployeeScreen extends javax.swing.JFrame {
 
             HoursWorkedField.setText("");
             HourlyRateField.setText("");
+            
+            empAge = 0;
+            empBasicSalary =0;
+            empBonus = 0;
+            empDep = null;
+            empDepID = 0;
+            empDepName = null;
+            empFirstName = null;
+            empLastName = null;
+            empHourlyRate = 0;
+            empHoursWorked = 0;
+            empPosn = null;
+            empType =null;
+            
+            
         }
 
     }//GEN-LAST:event_ClearButtonActionPerformed
