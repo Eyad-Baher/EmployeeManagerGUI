@@ -30,6 +30,7 @@ public class ViewEmployeesScreen extends javax.swing.JFrame {
     public ViewEmployeesScreen() {
         initComponents();
         employeesTable.setDefaultEditor(Object.class, null);
+        employeesTable.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
 
         m = (DefaultTableModel) employeesTable.getModel();
         sorter = new TableRowSorter<>(m);
@@ -39,23 +40,21 @@ public class ViewEmployeesScreen extends javax.swing.JFrame {
 
     }
 
-   public void fillTable() {
-    m.setRowCount(0);
-    for (Employee e : EmployeeManager.getEmployees()) {
-        if (e instanceof FullTimeEmployee ) {
-            m.addRow(new Object[]{e.getEmployeeID(), e.getFirstName(), e.getLastName(), e.getAge(),
+    public void fillTable() {
+        m.setRowCount(0);
+        for (Employee e : EmployeeManager.getEmployees()) {
+            if (e instanceof FullTimeEmployee) {
+                m.addRow(new Object[]{e.getEmployeeID(), e.getFirstName(), e.getLastName(), e.getAge(),
                     e.getDepartment().getDepartmentName(), e.getDepartment().getDepartmentID(), e.getEmployeePosition(), e.getEmployeeType(),
-                    ((FullTimeEmployee)e).getBasicMonthlySalary(), ((FullTimeEmployee)e).getMonthlyBonus(), e.calcSalary()});
-        } else if (e instanceof PartTimeEmployee ) {
-            m.addRow(new Object[]{e.getEmployeeID(), e.getFirstName(), e.getLastName(), e.getAge(),
+                    ((FullTimeEmployee) e).getBasicMonthlySalary(), ((FullTimeEmployee) e).getMonthlyBonus(), e.calcSalary()});
+            } else if (e instanceof PartTimeEmployee) {
+                m.addRow(new Object[]{e.getEmployeeID(), e.getFirstName(), e.getLastName(), e.getAge(),
                     e.getDepartment().getDepartmentName(), e.getDepartment().getDepartmentID(), e.getEmployeePosition(), e.getEmployeeType(),
-                    ((PartTimeEmployee)e).getHourlyPaymentRate(), ((PartTimeEmployee)e).getHoursWorked(), e.calcSalary()});
+                    ((PartTimeEmployee) e).getHourlyPaymentRate(), ((PartTimeEmployee) e).getHoursWorked(), e.calcSalary()});
+            }
         }
     }
-}
 
-    
-    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -75,6 +74,8 @@ public class ViewEmployeesScreen extends javax.swing.JFrame {
         showAllButton = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        editButton = new javax.swing.JButton();
+        deleteButton = new javax.swing.JButton();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -144,6 +145,16 @@ public class ViewEmployeesScreen extends javax.swing.JFrame {
         jButton2.setText("<= Back");
         jButton2.addActionListener(this::jButton2ActionPerformed);
 
+        editButton.setBackground(new java.awt.Color(51, 153, 255));
+        editButton.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
+        editButton.setText("Edit");
+        editButton.addActionListener(this::editButtonActionPerformed);
+
+        deleteButton.setBackground(new java.awt.Color(204, 0, 0));
+        deleteButton.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
+        deleteButton.setText("Delete");
+        deleteButton.addActionListener(this::deleteButtonActionPerformed);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -155,18 +166,22 @@ public class ViewEmployeesScreen extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
+                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(250, 250, 250)
+                                .addComponent(viewEmployeesLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
                                 .addComponent(SearchIDLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(SearchIDField, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(showAllButton)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(250, 250, 250)
-                                .addComponent(viewEmployeesLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 476, Short.MAX_VALUE)))
+                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(65, 65, 65)
+                                .addComponent(editButton, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(deleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 240, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -181,7 +196,9 @@ public class ViewEmployeesScreen extends javax.swing.JFrame {
                     .addComponent(SearchIDLabel)
                     .addComponent(SearchIDField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(showAllButton)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(editButton, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(deleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(12, 12, 12))
@@ -231,11 +248,56 @@ public class ViewEmployeesScreen extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         OptionEmployeeScreen optionScreen = new OptionEmployeeScreen();
-        
+
         this.setVisible(false);
         optionScreen.setVisible(true);
-        
+
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editButtonActionPerformed
+        // TODO add your handling code here:
+
+        Employee empSelected = getSelectedEmployee();
+
+        if (empSelected == null) {
+            JOptionPane.showMessageDialog(null, "No Employee Found",
+                    "none found", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        ModifyEmployeeScreen modScreen = new ModifyEmployeeScreen(this, true);
+        modScreen.setVisible(true);
+        fillTable();
+
+    }//GEN-LAST:event_editButtonActionPerformed
+
+    private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
+        // TODO add your handling code here:
+
+        Employee empDel = getSelectedEmployee();
+
+        int choice = JOptionPane.showConfirmDialog(null,
+                "Are you sure  you want to delete " + empDel.getEmployeeID() + " " + empDel.getFirstName()
+                + " " + empDel.getLastName(),
+                 "Delete", JOptionPane.YES_NO_CANCEL_OPTION);
+
+        if (choice != 0) {
+            JOptionPane.showMessageDialog(null, "Delete unsuccessful", "Failed to delete", JOptionPane.OK_OPTION);
+            return;
+        }
+
+        boolean del = EmployeeManager.deleteEmployee(empDel.getEmployeeID());
+
+        if (!del) {
+            JOptionPane.showMessageDialog(null, "Failed to Delete Employee", "Failed", JOptionPane.WARNING_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(null, "Delete Successful", "Done", JOptionPane.OK_OPTION);
+            fillTable();
+
+        }
+
+
+    }//GEN-LAST:event_deleteButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -262,9 +324,34 @@ public class ViewEmployeesScreen extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(() -> new ViewEmployeesScreen().setVisible(true));
     }
 
+    private Employee getSelectedEmployee() {
+        int viewRow = employeesTable.getSelectedRow();
+
+        if (viewRow == -1) {
+            JOptionPane.showMessageDialog(null, "No Employee selected. Please select an Employee.", "No Option Selected", JOptionPane.WARNING_MESSAGE);
+            return null;
+        }
+
+        int modelRow = employeesTable.convertRowIndexToModel(viewRow);
+
+        int id = (int) m.getValueAt(modelRow, 0);
+
+        int arrayEmpIndex = EmployeeManager.findByID(id);
+        if (arrayEmpIndex == -1) {
+            JOptionPane.showMessageDialog(this, "No employee found", "Employee not found", JOptionPane.WARNING_MESSAGE);
+            return null;
+        }
+
+        return EmployeeManager.getEmployeeAtIdx(id);
+
+    }
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField SearchIDField;
     private javax.swing.JLabel SearchIDLabel;
+    private javax.swing.JButton deleteButton;
+    private javax.swing.JButton editButton;
     private javax.swing.JTable employeesTable;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;

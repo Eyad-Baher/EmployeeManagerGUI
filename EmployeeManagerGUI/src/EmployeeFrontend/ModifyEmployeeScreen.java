@@ -1,47 +1,25 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
  */
 package EmployeeFrontend;
 
-import EmployeeBackend.Employee;
-import java.util.ArrayList;
-import EmployeeBackend.EmployeeManager;
-import EmployeeBackend.FullTimeEmployee;
-import EmployeeBackend.PartTimeEmployee;
-import javax.swing.table.DefaultTableModel;
-
 /**
  *
- * @author abdel
+ * @author HP
  */
-public class ModifyEmployeeScreen extends javax.swing.JFrame {
+public class ModifyEmployeeScreen extends javax.swing.JDialog {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(ModifyEmployeeScreen.class.getName());
 
     /**
      * Creates new form ModifyEmployeeScreen
      */
-    public ModifyEmployeeScreen() {
+    public ModifyEmployeeScreen(java.awt.Frame parent, boolean modal) {
+        super(parent, modal);
         initComponents();
     }
 
-    
-    public void fillTable() {
-        ArrayList<Employee> emps=EmployeeManager.getEmployees();
-        
-        DefaultTableModel m= (DefaultTableModel)ModifyTable.getModel();
-        for (Employee e : emps) {
-            m.addRow(new Object[]{e.getEmployeeID(),e.getFirstName(),e.getLastName(),e.getAge(),e.getDepartment(),e.getEmployeePosition(),e.getEmployeeType()});
-        if(e instanceof FullTimeEmployee){
-          m.addRow(new Object[]{e.getEmployeeID(),e.getFirstName(),e.getLastName(),e.getAge(),e.getDepartment(),e.getEmployeePosition(),e.getEmployeeType(),((FullTimeEmployee) e).getBasicMonthlySalary(),((FullTimeEmployee) e).getMonthlyBonus(),e.calcSalary()});
-        }
-        else {
-           m.addRow(new Object[]{e.getEmployeeID(),e.getFirstName(),e.getLastName(),e.getAge(),e.getDepartment(),e.getEmployeePosition(),e.getEmployeeType(),((PartTimeEmployee) e).getHourlyPaymentRate(),((PartTimeEmployee) e).getHoursWorked(),e.calcSalary()});
-        }
-        }
-        
-    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -51,55 +29,17 @@ public class ModifyEmployeeScreen extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        ModifyTable = new javax.swing.JTable();
-        viewEmployeesLabel = new javax.swing.JLabel();
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        ModifyTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null}
-            },
-            new String [] {
-                "Employee ID", "First Name", "Last Name", "Age", "Department", "Position", "Type", "Basic Salary / Hourly Rate", "Bonus / Hours Worked", "Total Salary"
-            }
-        ));
-        jScrollPane1.setViewportView(ModifyTable);
-        if (ModifyTable.getColumnModel().getColumnCount() > 0) {
-            ModifyTable.getColumnModel().getColumn(7).setMinWidth(150);
-            ModifyTable.getColumnModel().getColumn(7).setMaxWidth(150);
-            ModifyTable.getColumnModel().getColumn(8).setMinWidth(140);
-            ModifyTable.getColumnModel().getColumn(8).setMaxWidth(140);
-        }
-
-        viewEmployeesLabel.setFont(new java.awt.Font("Serif", 3, 24)); // NOI18N
-        viewEmployeesLabel.setText("Employee Modifier ");
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(314, 314, 314)
-                .addComponent(viewEmployeesLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(360, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(68, 68, 68)
-                .addComponent(jScrollPane1)
-                .addContainerGap())
+            .addGap(0, 400, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(32, Short.MAX_VALUE)
-                .addComponent(viewEmployeesLabel)
-                .addGap(124, 124, 124)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(301, 301, 301))
+            .addGap(0, 300, Short.MAX_VALUE)
         );
 
         pack();
@@ -126,13 +66,22 @@ public class ModifyEmployeeScreen extends javax.swing.JFrame {
         }
         //</editor-fold>
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new ModifyEmployeeScreen().setVisible(true));
+        /* Create and display the dialog */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                ModifyEmployeeScreen dialog = new ModifyEmployeeScreen(new javax.swing.JFrame(), true);
+                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+                    @Override
+                    public void windowClosing(java.awt.event.WindowEvent e) {
+                        System.exit(0);
+                    }
+                });
+                dialog.setVisible(true);
+            }
+        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTable ModifyTable;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel viewEmployeesLabel;
     // End of variables declaration//GEN-END:variables
 }

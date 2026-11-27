@@ -125,4 +125,9 @@ public class EmployeeManager {
         return employees.size();
     }
 
+    public static Employee getEmployeeAtIdx(int idx)
+    {
+        return employees.get(idx);
+    }
+    
 }
