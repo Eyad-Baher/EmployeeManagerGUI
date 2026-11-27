@@ -23,6 +23,8 @@ public class Department {
     public Department(String name, int id) {   
     this.name = name;
     this.id = id;
+    if(id>depNum)
+        depNum=id;
 }
 
     public String getName() {

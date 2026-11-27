@@ -76,6 +76,35 @@ public class DepartmentFileHandling {
         
     }
     
+    public static boolean addDepToFile(Department dep)
+    {
+        try {
+            BufferedWriter fwriter = new BufferedWriter(new FileWriter("DepartmentDetails.csv",true));
+            fwriter.write(dep.getId()+","+dep.getName());
+            fwriter.newLine();
+            fwriter.close();
+            return true;
+        } catch (IOException ex) {
+            //System.getLogger(DepartmentFileHandling.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
+            return false;
+        }
+    }
     
+    public static void loadDep()
+    {
+        String line;
+        BufferedReader freader;
+        try {
+            freader = new BufferedReader(new FileReader("DepartmentDetails.csv"));
+            while((line = freader.readLine()) !=null)
+            {
+                parseDetails(line);
+            }
+        } catch (FileNotFoundException ex) {
+            System.getLogger(DepartmentFileHandling.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
+        } catch (IOException ex) {
+            System.getLogger(DepartmentFileHandling.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
+        }
+    }
     
 }

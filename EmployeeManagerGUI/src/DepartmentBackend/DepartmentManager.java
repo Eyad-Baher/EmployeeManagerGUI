@@ -8,6 +8,7 @@ import static DepartmentBackend.DepartmentFileHandling.saveToFile;
 import DepartmentBackend.Exceptions.DepartmentInUseException;
 import DepartmentBackend.Exceptions.DepartmentNotFoundException;
 import EmployeeBackend.Employee;
+import EmployeeBackend.EmployeeManager;
 import static EmployeeBackend.EmployeeManager.employees;
 import java.util.ArrayList;
 
@@ -23,10 +24,41 @@ public class DepartmentManager {
         depList.add(department);
     }
     
-    public static void loadDepartment(String name, int id){
+    //mariam's addDepartment:
+    public static boolean addDepartment(String name)
+    {
+        if(name==null || name.trim().equals(""))
+            return false;
+        else
+        {
+            name=name.trim();
+            for(Department dep:depList)
+            {
+                if(name.equalsIgnoreCase(dep.getName()))
+                    return false;
+            }
+        }
+        
+        Department newDepartment = new Department(name );
+        depList.add(newDepartment);
+        return true;
+    }
+    
+    //old loadDepartment
+    /*public static void loadDepartment(String name, int id){
         Department dep = new Department(name, id);
         dep.setId(id);
         addDepartment(dep);
+    }*/
+    
+    //mariam's loadDepartment:
+    public static void loadDepartment(String name, int id){
+        
+        if(name==null || name.trim().equals(""))
+            return;
+        Department dep = new Department(name, id);
+        depList.add(dep);
+        
     }
     
     public static void deleteDepartment(int id){
@@ -57,4 +89,16 @@ public class DepartmentManager {
         saveToFile();
     }
     
+    
+    //mariam's getDepEmps:
+    public static ArrayList<Employee> getDepEmps(Department dep)
+    {
+        ArrayList<Employee> depEmps = new ArrayList();
+        for(Employee e: EmployeeManager.employees)
+        {
+            if(dep.getName().trim().equalsIgnoreCase(e.getDepartment().trim()))
+                depEmps.add(e);
+        }
+        return depEmps;
+    }
 }
