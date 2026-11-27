@@ -60,7 +60,7 @@ public class DepartmentManager {
             }
         }
         if ( target == null)
-            throw new DepartmentNotFoundException("Error department with ID: " + id + "was not found!");
+            throw new DepartmentNotFoundException("Error department with ID: " + id + " was not found!");
         else 
         {
             int found = 0;
@@ -73,7 +73,7 @@ public class DepartmentManager {
                 }
             }
             if (found==1)
-                throw new DepartmentInUseException("Error can't delete the " + target.getName() + "department! \n Department has employee(s) assigned to it.");
+                throw new DepartmentInUseException("Error can't delete the " + target.getName() + " department! \n Department has employee(s) assigned to it.");
         }
         depList.remove(target);
         saveToFile();

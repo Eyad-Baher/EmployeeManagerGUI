@@ -2,9 +2,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package Login;
+package LoginFrontend;
 
 
+import LoginBackend.Admin;
+import static LoginBackend.AdminFileHandler.loadFile;
+import static LoginBackend.AdminManager.admins;
 import javax.swing.JOptionPane;
 
 /**
@@ -122,14 +125,29 @@ public class LoginScreen extends javax.swing.JFrame {
     }//GEN-LAST:event_usernameTextActionPerformed
 
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
+       loadFile();
        String username = usernameText.getText();
-       String password = passwordText.getText();
-       
-       if(username.equals(" "))
+       String password = new String(passwordText.getPassword());
+       if(username.isEmpty()&&password.isEmpty()){
+           JOptionPane.showMessageDialog(this, "Please enter username and password.");
+           return;
+       }
+       if(username.isEmpty()){
            JOptionPane.showMessageDialog(this, "Please enter username.");
-       if (password.equals(" "))
+           return;
+       }
+       if (password.isEmpty()){
            JOptionPane.showMessageDialog(this, "Please enter password.");
-       if( username.equals("admin") && password.equals("admin123")){
+           return;
+       }
+       boolean found = false;
+       for (Admin admin : admins){
+          if( username.equals(admin.getAdminName()) && password.equals(admin.getPassword())){
+              found = true;
+              break;
+          }
+       }
+       if(found){
            HomeScreen h = new HomeScreen();
            this.setVisible(false);
            h.setVisible(true);

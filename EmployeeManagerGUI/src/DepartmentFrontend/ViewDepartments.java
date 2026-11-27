@@ -58,6 +58,8 @@ public class ViewDepartments extends javax.swing.JFrame {
         departmentsTable = new javax.swing.JTable();
         deleteButton = new javax.swing.JButton();
         backButton = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -79,6 +81,14 @@ public class ViewDepartments extends javax.swing.JFrame {
         backButton.setText("<-- Back");
         backButton.addActionListener(this::backButtonActionPerformed);
 
+        jLabel1.setForeground(new java.awt.Color(0, 0, 255));
+        jLabel1.setText("** select a department to delete");
+
+        jLabel2.setFont(new java.awt.Font("Serif", 1, 24)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 0, 153));
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("Departments");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -86,25 +96,35 @@ public class ViewDepartments extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(192, 192, 192)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(87, 87, 87)
+                        .addGap(81, 81, 81)
                         .addComponent(backButton)
-                        .addGap(78, 78, 78)
-                        .addComponent(deleteButton)))
+                        .addGap(85, 85, 85)
+                        .addComponent(deleteButton))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(109, 109, 109)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(19, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(17, 17, 17)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(deleteButton)
                     .addComponent(backButton))
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel1)
+                .addGap(22, 22, 22))
         );
 
         pack();
@@ -125,7 +145,7 @@ public class ViewDepartments extends javax.swing.JFrame {
         int id = Integer.parseInt(departmentsTable.getValueAt(row,0).toString());
         String name = departmentsTable.getValueAt(row, 1).toString();
         
-        int choice = JOptionPane.showConfirmDialog(this, "Are you sure you want to delete department \"" + name + "\"?", "Confirm delete", JOptionPane.YES_NO_OPTION);
+        int choice = JOptionPane.showConfirmDialog(this, "Are you sure you want to delete department \"" + name + "\" ?", "Confirm delete", JOptionPane.YES_NO_OPTION);
         if(choice != JOptionPane.YES_OPTION){
             return;
         }
@@ -133,7 +153,7 @@ public class ViewDepartments extends javax.swing.JFrame {
         try{
             DepartmentManager.deleteDepartment(id);
             fillTable();
-            JOptionPane.showMessageDialog(this, "Department Deleted successfully.");
+            JOptionPane.showMessageDialog(this, "Department deleted successfully.");
         }catch(DepartmentNotFoundException e){
             JOptionPane.showMessageDialog(this, e.getMessage());
         }catch(DepartmentInUseException e){
@@ -171,6 +191,8 @@ public class ViewDepartments extends javax.swing.JFrame {
     private javax.swing.JButton backButton;
     private javax.swing.JButton deleteButton;
     private javax.swing.JTable departmentsTable;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }
