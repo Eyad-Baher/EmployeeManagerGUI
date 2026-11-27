@@ -457,31 +457,9 @@ public class AddEmployeeScreen extends javax.swing.JFrame {
         int choice = JOptionPane.showConfirmDialog(null, "Are you sure you want to clear the input details?", "Clear Details", JOptionPane.YES_NO_OPTION);
 
         if (choice == 0) {
-            firstNameField.setText("");
-            lastNameField.setText("");
-            ageField.setText("");
-            positionField.setText("");
 
-            salaryField.setText("");
-            BonusField.setText("");
+            clearAll();
 
-            HoursWorkedField.setText("");
-            HourlyRateField.setText("");
-            
-            empAge = 0;
-            empBasicSalary =0;
-            empBonus = 0;
-            empDep = null;
-            empDepID = 0;
-            empDepName = null;
-            empFirstName = null;
-            empLastName = null;
-            empHourlyRate = 0;
-            empHoursWorked = 0;
-            empPosn = null;
-            empType =null;
-            
-            
         }
 
     }//GEN-LAST:event_ClearButtonActionPerformed
@@ -597,7 +575,7 @@ public class AddEmployeeScreen extends javax.swing.JFrame {
                     this,
                     "Please enter all required fields for Full Time before clicking Create.",
                     "Incomplete Input",
-                    javax.swing.JOptionPane.WARNING_MESSAGE
+                    JOptionPane.WARNING_MESSAGE
             );
             return;
         }
@@ -620,40 +598,70 @@ public class AddEmployeeScreen extends javax.swing.JFrame {
 
         empDep = new Department(empDepName, empDepID);
 
-        int choice = JOptionPane.showConfirmDialog(null, "Are you sure you want tp add Employee", "Employee Creation", JOptionPane.YES_NO_OPTION);
+        int choice = JOptionPane.showConfirmDialog(null, "Are you sure you want to add Employee", "Employee Creation", JOptionPane.YES_NO_OPTION);
 
         if (choice == 0) {
             if ("FULL".equals(empType)) {
 
                 EmployeeManager.createFullEmployee(empBasicSalary, empBonus, 0, empFirstName, empLastName, empDep, empAge, empPosn, empType);
                 JOptionPane.showConfirmDialog(null, "Employee Added Successfully");
+                EmployeeManager.saveAll();
+                clearAll();
                 return;
 
             } else if ("PART".equals(empType)) {
                 EmployeeManager.createPartEmployee(empHourlyRate, empHoursWorked, 0, empFirstName, empLastName, empDep, empAge, empPosn, empType);
-                JOptionPane.showMessageDialog(null, "Employee Added Successfully","Successful Creation",JOptionPane.OK_OPTION);
+                JOptionPane.showMessageDialog(null, "Employee Added Successfully", "Successful Creation", JOptionPane.OK_OPTION);
+                EmployeeManager.saveAll();
+                clearAll();
                 return;
             }
         }
 
         JOptionPane.showMessageDialog(null, "Unsuccessfull Creation");
-        
+
         idAutomaticGeneratedLabel.setText(String.valueOf(Employee.getEmployeeNum()));
     }//GEN-LAST:event_CreateButton1ActionPerformed
 
     private void BackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackButtonActionPerformed
         // TODO add your handling code here:
-        OptionEmployeeScreen optionScreen  = new OptionEmployeeScreen();
-        
+        OptionEmployeeScreen optionScreen = new OptionEmployeeScreen();
+
         this.setVisible(false);
         optionScreen.setVisible(true);
-        
-        
+
+
     }//GEN-LAST:event_BackButtonActionPerformed
 
     private void ClearButtonStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_ClearButtonStateChanged
         // TODO add your handling code here:
     }//GEN-LAST:event_ClearButtonStateChanged
+
+    private void clearAll() {
+        firstNameField.setText("");
+        lastNameField.setText("");
+        ageField.setText("");
+        positionField.setText("");
+
+        salaryField.setText("");
+        BonusField.setText("");
+
+        HoursWorkedField.setText("");
+        HourlyRateField.setText("");
+
+        empAge = 0;
+        empBasicSalary = 0;
+        empBonus = 0;
+        empDep = null;
+        empDepID = 0;
+        empDepName = null;
+        empFirstName = null;
+        empLastName = null;
+        empHourlyRate = 0;
+        empHoursWorked = 0;
+        empPosn = null;
+        empType = null;
+    }
 
     /**
      * @param args the command line arguments

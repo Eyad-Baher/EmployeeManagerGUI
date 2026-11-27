@@ -4,6 +4,7 @@
  */
 package EmployeeFrontend;
 
+import EmployeeBackend.EmployeeFileHandler;
 import javax.swing.JOptionPane;
 
 /**
@@ -19,6 +20,7 @@ public class OptionEmployeeScreen extends javax.swing.JFrame {
      */
     public OptionEmployeeScreen() {
         initComponents();
+        
     }
 
     /**

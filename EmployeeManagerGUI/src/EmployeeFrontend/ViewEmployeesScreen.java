@@ -35,6 +35,7 @@ public class ViewEmployeesScreen extends javax.swing.JFrame {
         m = (DefaultTableModel) employeesTable.getModel();
         sorter = new TableRowSorter<>(m);
         employeesTable.setRowSorter(sorter);
+        
 
         fillTable();
 
@@ -307,6 +308,7 @@ public class ViewEmployeesScreen extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Failed to Delete Employee", "Failed", JOptionPane.WARNING_MESSAGE);
         } else {
             JOptionPane.showMessageDialog(null, "Delete Successful", "Done", JOptionPane.INFORMATION_MESSAGE);
+            EmployeeManager.saveAll();
             fillTable();
 
         }

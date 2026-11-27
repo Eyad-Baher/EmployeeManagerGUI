@@ -4,6 +4,7 @@
  */
 package EmployeeFrontend;
 
+import DepartmentBackend.Department;
 import javax.swing.border.EmptyBorder;
 import EmployeeBackend.*;
 import javax.swing.JOptionPane;
@@ -21,34 +22,61 @@ public class ModifyEmployeeScreen extends javax.swing.JDialog {
      */
     private Employee emp;
 
+    String empFirstName;
+    String empLastName;
+    int empAge;
+    String empPosn;
+    String empDepName;
+    String empType;
+
+    double empBasicSalary;
+    double empBonus;
+
+    double empHoursWorked;
+    double empHourlyRate;
+
+    Department empDep;
+    int empDepID;
+
     public ModifyEmployeeScreen(java.awt.Frame parent, boolean modal, Employee emp) {
         super(parent, modal);
         this.emp = emp;
-        
-        if(emp == null)
-        {
+
+        if (emp == null) {
             JOptionPane.showMessageDialog(null, "No employee found", "Error", JOptionPane.WARNING_MESSAGE);
-            
+
         }
         initComponents();
+        setSalaryFields();
         setLocationRelativeTo(parent);
     }
-    private String empDepName;
-    private String empType;
-    
-    private void loadEmp()
-    {
+
+    private void loadEmp() {
         idAutomaticGeneratedLabelmodify.setText(String.valueOf(emp.getEmployeeID()));
         firstNameFieldmodify.setText(emp.getFirstName());
         LastNameLabelmodify.setText(emp.getLastName());
         ageFieldmodify.setText(String.valueOf(emp.getAge()));
         comboBoxDeppartementmodify.setSelectedItem(emp.getDepartment().getDepartmentName());
-        
-        
-        
-        
+
     }
-    
+
+    private void setSalaryFields() {
+        if (emp.getEmployeeType().equals("FULL")) {
+            employeeTypeComboBoxmodify.setSelectedItem("Full-Time");
+            salaryFieldmodify.setText(String.valueOf(((FullTimeEmployee) emp).getBasicMonthlySalary()));
+            BonusFieldmodify.setText(String.valueOf(((FullTimeEmployee) emp).getMonthlyBonus()));
+            HourlyRateFieldmodify.setText("");
+            HoursWorkedFieldmodify.setText("");
+
+        } else if (emp.getEmployeeType().equals("PART")) {
+            employeeTypeComboBoxmodify.setSelectedItem("Part-Time");
+            salaryFieldmodify.setText("");
+            BonusFieldmodify.setText("");
+            HourlyRateFieldmodify.setText(String.valueOf(((PartTimeEmployee) emp).getHourlyPaymentRate()));
+            HoursWorkedFieldmodify.setText(String.valueOf(((PartTimeEmployee) emp).getHoursWorked()));
+        }
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -201,12 +229,13 @@ public class ModifyEmployeeScreen extends javax.swing.JDialog {
 
         modifyButton.setBackground(new java.awt.Color(0, 204, 51));
         modifyButton.setFont(new java.awt.Font("Arial", 3, 18)); // NOI18N
-        modifyButton.setText("Modify Employee");
+        modifyButton.setText("Save");
         modifyButton.addActionListener(this::modifyButtonActionPerformed);
 
         clearDetailsButtonModify.setBackground(new java.awt.Color(204, 0, 0));
         clearDetailsButtonModify.setFont(new java.awt.Font("Arial", 3, 18)); // NOI18N
         clearDetailsButtonModify.setText("Clear Details");
+        clearDetailsButtonModify.addActionListener(this::clearDetailsButtonModifyActionPerformed);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -353,7 +382,7 @@ public class ModifyEmployeeScreen extends javax.swing.JDialog {
 
     private void comboBoxDeppartementmodifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxDeppartementmodifyActionPerformed
         // TODO add your handling code here:
-         empDepName = String.valueOf(comboBoxDeppartementmodify.getSelectedItem());
+        empDepName = String.valueOf(comboBoxDeppartementmodify.getSelectedItem());
     }//GEN-LAST:event_comboBoxDeppartementmodifyActionPerformed
 
     private void comboBoxDeppartementmodifyKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_comboBoxDeppartementmodifyKeyReleased
@@ -420,53 +449,193 @@ public class ModifyEmployeeScreen extends javax.swing.JDialog {
 
     private void modifyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifyButtonActionPerformed
         // TODO add your handling code here:
+
+        // ---------- First Name ----------
+        if (!FrontValidation.validateAnyName(firstNameFieldmodify.getText())) {
+            firstNameFieldmodify.setText("");
+            firstNameFieldmodify.requestFocusInWindow();
+            firstNameFieldmodify.selectAll();
+            return;
+        }
+        empFirstName = firstNameFieldmodify.getText();
+
+        // ---------- Last Name ----------
+        if (!FrontValidation.validateAnyName(lastNameField.getText())) {
+            lastNameField.setText("");
+            lastNameField.requestFocusInWindow();
+            lastNameField.selectAll();
+            return;
+        }
+        empLastName = lastNameField.getText();
+
+        // ---------- Age ----------
+        if (!FrontValidation.validateAge(ageFieldmodify.getText())) {
+            ageFieldmodify.setText("");
+            ageFieldmodify.requestFocusInWindow();
+            ageFieldmodify.selectAll();
+            return;
+        }
+        empAge = Integer.parseInt(ageFieldmodify.getText());
+
+        // ---------- Department Name ----------
+        empDepName = String.valueOf(comboBoxDeppartementmodify.getSelectedItem());
+
+        // ---------- Position ----------
+        if (!FrontValidation.validatePosn(positionFieldmodify.getText())) {
+            positionFieldmodify.setText("");
+            positionFieldmodify.requestFocusInWindow();
+            positionFieldmodify.selectAll();
+            return;
+        }
+        empPosn = positionFieldmodify.getText();
+
+        // ---------- Department ID ----------
+        try {
+            empDepID = Integer.parseInt(departementIDLabelmodify.getText());
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Invalid department ID");
+            departementIDLabelmodify.setText("");
+            departementIDLabelmodify.requestFocusInWindow();
+            return;
+        }
+
+        // ---------- Employee Type ----------
+        String str = (String) employeeTypeComboBoxmodify.getSelectedItem();
+        if (str.equals("Full-Time")) {
+            empType = "FULL";
+        } else {
+            empType = "PART";
+        }
+
+        if (empType.equals("FULL")) {
+            if (!FrontValidation.validateNums(salaryFieldmodify.getText())) {
+                JOptionPane.showMessageDialog(null, "Invalid Salary");
+                salaryFieldmodify.setText("");
+                salaryFieldmodify.requestFocusInWindow();
+                salaryFieldmodify.selectAll();
+                return;
+            }
+            empBasicSalary = Double.parseDouble(salaryFieldmodify.getText());
+
+            if (!FrontValidation.validateNums(BonusFieldmodify.getText())) {
+                JOptionPane.showMessageDialog(null, "Invalid bonus salary");
+                BonusFieldmodify.setText("");
+                BonusFieldmodify.requestFocusInWindow();
+                BonusFieldmodify.selectAll();
+                return;
+            }
+            empBonus = Double.parseDouble(BonusFieldmodify.getText());
+
+        } else {
+            if (!FrontValidation.validateNums(HoursWorkedFieldmodify.getText())) {
+                JOptionPane.showMessageDialog(null, "Invalid hours worked");
+                HoursWorkedFieldmodify.setText("");
+                HoursWorkedFieldmodify.requestFocusInWindow();
+                HoursWorkedFieldmodify.selectAll();
+                return;
+            }
+            empHoursWorked = Double.parseDouble(HoursWorkedFieldmodify.getText());
+
+            if (!FrontValidation.validateNums(HourlyRateFieldmodify.getText())) {
+                JOptionPane.showMessageDialog(null, "Invalid hourly rate");
+                HourlyRateFieldmodify.setText("");
+                HourlyRateFieldmodify.requestFocusInWindow();
+                HourlyRateFieldmodify.selectAll();
+                return;
+            }
+            empHourlyRate = Double.parseDouble(HourlyRateFieldmodify.getText());
+        }
+
+        if (empType.equals("FULL") && (empFirstName == null || empFirstName.trim().isEmpty()
+                || empLastName == null || empLastName.trim().isEmpty()
+                || empPosn == null || empPosn.trim().isEmpty()
+                || empDepName == null || empDepName.trim().isEmpty()
+                || empDepID == 0
+                || empType == null || empType.trim().isEmpty()
+                || empAge == 0 || empBasicSalary == 0 || empBonus == 0)) {
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Please enter all required fields for Full Time before clicking Modify.",
+                    "Incomplete Input",
+                    JOptionPane.WARNING_MESSAGE
+            );
+            return;
+        }
+
+        if (empType.equals("PART") && (empFirstName == null || empFirstName.trim().isEmpty()
+                || empLastName == null || empLastName.trim().isEmpty()
+                || empPosn == null || empPosn.trim().isEmpty()
+                || empDepName == null || empDepName.trim().isEmpty()
+                || empDepID == 0
+                || empType == null || empType.trim().isEmpty()
+                || empAge == 0 || empHourlyRate == 0 || empHoursWorked == 0)) {
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Please enter all required fields for Part Time before clicking modify.",
+                    "Incomplete Input",
+                    JOptionPane.WARNING_MESSAGE
+            );
+            return;
+        }
+
+        empDep = new Department(empDepName, empDepID);
+
+        int choice = JOptionPane.showConfirmDialog(null, "Are you sure you want to modify Employee", "Employee Creation", JOptionPane.YES_NO_OPTION);
+
+        if (choice == JOptionPane.YES_OPTION) {
+
+            EmployeeManager.modifyEmployee(emp.getEmployeeID(), empType, empBasicSalary, empBonus, empHourlyRate, empHoursWorked, empFirstName, empLastName, empDep, empAge, empPosn);
+            JOptionPane.showMessageDialog(null, "Employee modified Succesfully", "Successs", JOptionPane.INFORMATION_MESSAGE);
+
+            return;
+        }
+
+        JOptionPane.showMessageDialog(null, "Unsuccessfull Modification");
+
+
     }//GEN-LAST:event_modifyButtonActionPerformed
+
+    private void clearDetailsButtonModifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearDetailsButtonModifyActionPerformed
+        // TODO add your handling code here:
+
+        int choice = JOptionPane.showConfirmDialog(null, "Are you sure you want to clear employee details?",
+                 "Clear Details", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+
+        if (choice == JOptionPane.YES_OPTION) {
+            clearAll();
+        }
+
+    }//GEN-LAST:event_clearDetailsButtonModifyActionPerformed
+
+    private void clearAll() {
+        firstNameFieldmodify.setText("");
+        lastNameField.setText("");
+        ageFieldmodify.setText("");
+        positionFieldmodify.setText("");
+
+        salaryFieldmodify.setText("");
+        BonusFieldmodify.setText("");
+
+        HourlyRateFieldmodify.setText("");
+        HourlyRateFieldmodify.setText("");
+
+        empAge = 0;
+        empBasicSalary = 0;
+        empBonus = 0;
+        empDep = null;
+        empDepID = 0;
+        empDepName = null;
+        empFirstName = null;
+        empLastName = null;
+        empHourlyRate = 0;
+        empHoursWorked = 0;
+        empPosn = null;
+        empType = null;
+    }
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
-            logger.log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the dialog */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                // Grab the first employee from the manager for testing
-                Employee testEmp = EmployeeManager.getEmployees().isEmpty()
-                        ? null
-                        : EmployeeManager.getEmployees().get(0);
-
-                if (testEmp == null) {
-                    javax.swing.JOptionPane.showMessageDialog(null, "No employees to test with.");
-                }
-
-                ModifyEmployeeScreen dialog = new ModifyEmployeeScreen(new javax.swing.JFrame(), true, testEmp);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField BonusFieldmodify;

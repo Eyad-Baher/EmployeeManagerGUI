@@ -84,6 +84,10 @@ public class EmployeeManager {
         EmployeeFileHandler.saveToFile(employees);
     }
 
+    public static void saveEmpOnly(Employee emp)
+    {
+        EmployeeFileHandler.addToFile(emp);
+    }
     public static void clearAll() {
         employees.clear();
     }
