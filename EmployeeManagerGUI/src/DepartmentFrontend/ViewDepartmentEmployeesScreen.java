@@ -27,7 +27,7 @@ public class ViewDepartmentEmployeesScreen extends javax.swing.JFrame {
         initComponents();
         this.previousScreen= previousScreen;
         depComboBox.removeAllItems();
-        for (Department d: DepartmentManager.depList)
+        for (Department d: DepartmentManager.getDepList())
         {
             depComboBox.addItem(d.getName());
         }
@@ -135,7 +135,7 @@ public class ViewDepartmentEmployeesScreen extends javax.swing.JFrame {
         }
         //else fill the table. but check if there are no employees first.
         String selectedDep= (String) depComboBox.getSelectedItem();
-        for(Department d: DepartmentManager.depList)
+        for(Department d: DepartmentManager.getDepList())
         {
             if(selectedDep.trim().equalsIgnoreCase(d.getName().trim()))
             {

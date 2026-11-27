@@ -4,7 +4,7 @@
  */
 package DepartmentBackend;
 
-import static DepartmentBackend.DepartmentManager.depList;
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
@@ -30,7 +30,7 @@ public class DepartmentFileHandling {
     public static void readFile()
     {
          String line;
-         depList.clear();
+         DepartmentManager.getDepList().clear();
          finalID=0;
         try {
            
@@ -63,7 +63,7 @@ public class DepartmentFileHandling {
          
         try {
             BufferedWriter fwriter = new BufferedWriter(new FileWriter(DFILENAME));
-            for (Department dep: depList)
+            for (Department dep: DepartmentManager.getDepList())
             {
                 String depDetails = toCSV(dep);
                 fwriter.write(depDetails);
