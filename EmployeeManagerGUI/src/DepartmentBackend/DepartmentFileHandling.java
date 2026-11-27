@@ -90,7 +90,7 @@ public class DepartmentFileHandling {
         }
     }
     
-    public static void loadDep()
+    /*public static void loadDep()      /////same as readFile method
     {
         String line;
         BufferedReader freader;
@@ -105,6 +105,6 @@ public class DepartmentFileHandling {
         } catch (IOException ex) {
             System.getLogger(DepartmentFileHandling.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
         }
-    }
+    }*/
     
 }
