@@ -140,11 +140,11 @@ public class OptionDepartmentScreen extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        DepartmentFileHandling.loadDep();
+        //DepartmentFileHandling.loadDep();
+        DepartmentFileHandling.readFile();
         EmployeeFileHandler.loadFile();
         System.out.println("Deps: "+DepartmentManager.depList.size());
         System.out.println("Emps: "+EmployeeManager.employees.size());
-        java.awt.EventQueue.invokeLater(() -> new OptionDepartmentScreen().setVisible(true));
         java.awt.EventQueue.invokeLater(() -> new OptionDepartmentScreen().setVisible(true));
     }
 
