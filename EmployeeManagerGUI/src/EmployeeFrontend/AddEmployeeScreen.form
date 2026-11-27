@@ -45,40 +45,35 @@
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" attributes="0">
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Group type="102" attributes="0">
-                                              <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Component id="employeeTypeLabel" max="32767" attributes="0"/>
-                                                  <Component id="positionLabel" alignment="0" max="32767" attributes="0"/>
-                                                  <Component id="LastNameLabel" alignment="0" max="32767" attributes="0"/>
-                                                  <Component id="ageLabel" alignment="0" max="32767" attributes="0"/>
-                                                  <Component id="fistNameLabel" alignment="0" max="32767" attributes="0"/>
-                                                  <Component id="salaryLabel" max="32767" attributes="0"/>
-                                                  <Group type="102" alignment="0" attributes="0">
-                                                      <Component id="departementLabel1" max="32767" attributes="0"/>
-                                                      <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
-                                                  </Group>
-                                              </Group>
-                                              <EmptySpace min="-2" pref="83" max="-2" attributes="0"/>
-                                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                                  <Component id="lastNameField" alignment="0" max="32767" attributes="0"/>
-                                                  <Component id="ageField" alignment="0" max="32767" attributes="0"/>
-                                                  <Component id="comboBoxDeppartement" alignment="0" pref="183" max="32767" attributes="0"/>
-                                                  <Component id="positionField" alignment="0" max="32767" attributes="0"/>
-                                                  <Component id="employeeTypeComboBox" alignment="0" max="32767" attributes="0"/>
-                                                  <Component id="salaryField" alignment="0" max="32767" attributes="0"/>
-                                                  <Component id="HoursWorkedField" alignment="0" max="32767" attributes="0"/>
-                                                  <Component id="firstNameField" max="32767" attributes="0"/>
-                                              </Group>
-                                          </Group>
+                                          <Component id="employeeTypeLabel" max="32767" attributes="0"/>
+                                          <Component id="positionLabel" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="LastNameLabel" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="ageLabel" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="salaryLabel" max="32767" attributes="0"/>
                                           <Group type="102" alignment="0" attributes="0">
-                                              <Component id="HoursworkedLabel" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace min="-2" pref="352" max="-2" attributes="0"/>
+                                              <Component id="departementLabel1" pref="205" max="32767" attributes="0"/>
+                                              <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
                                           </Group>
+                                          <Component id="fistNameLabel" alignment="0" max="32767" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace min="-2" pref="83" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                          <Component id="lastNameField" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="ageField" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="comboBoxDeppartement" alignment="0" pref="183" max="32767" attributes="0"/>
+                                          <Component id="positionField" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="employeeTypeComboBox" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="salaryField" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="HoursWorkedField" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="firstNameField" alignment="0" max="32767" attributes="0"/>
                                       </Group>
                                       <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" attributes="0">
-                                      <Component id="CreateButton1" min="-2" pref="183" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="HoursworkedLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="CreateButton1" min="-2" pref="183" max="-2" attributes="0"/>
+                                      </Group>
                                       <EmptySpace max="32767" attributes="0"/>
                                   </Group>
                               </Group>
@@ -113,7 +108,7 @@
                               <EmptySpace min="-2" pref="168" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace pref="32" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <Component id="jLabel1" min="-2" pref="134" max="-2" attributes="0"/>
