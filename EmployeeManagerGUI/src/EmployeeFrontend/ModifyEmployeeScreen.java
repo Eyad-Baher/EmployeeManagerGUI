@@ -31,15 +31,20 @@ public class ModifyEmployeeScreen extends javax.swing.JDialog {
             
         }
         initComponents();
+        setLocationRelativeTo(parent);
     }
     private String empDepName;
     private String empType;
     
     private void loadEmp()
     {
+        idAutomaticGeneratedLabelmodify.setText(String.valueOf(emp.getEmployeeID()));
         firstNameFieldmodify.setText(emp.getFirstName());
         LastNameLabelmodify.setText(emp.getLastName());
-        ageFieldmodify.setText(empDepName.get);
+        ageFieldmodify.setText(String.valueOf(emp.getAge()));
+        comboBoxDeppartementmodify.setSelectedItem(emp.getDepartment().getDepartmentName());
+        
+        
         
         
     }
