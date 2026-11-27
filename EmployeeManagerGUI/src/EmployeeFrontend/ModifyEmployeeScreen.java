@@ -28,9 +28,11 @@ public class ModifyEmployeeScreen extends javax.swing.JDialog {
         if(emp == null)
         {
             JOptionPane.showMessageDialog(null, "No employee found", "Error", JOptionPane.WARNING_MESSAGE);
-            
+            goBack();
         }
+        
         initComponents();
+        loadEmp();
         setLocationRelativeTo(parent);
     }
     private String empDepName;
@@ -38,14 +40,21 @@ public class ModifyEmployeeScreen extends javax.swing.JDialog {
     
     private void loadEmp()
     {
-        idAutomaticGeneratedLabelmodify.setText(String.valueOf(emp.getEmployeeID()));
+        idAutomaticGeneratedfieldmodify.setText(String.valueOf(emp.getEmployeeID()));
         firstNameFieldmodify.setText(emp.getFirstName());
-        LastNameLabelmodify.setText(emp.getLastName());
-        ageFieldmodify.setText(String.valueOf(emp.getAge()));
+        lastNameFieldmodify.setText(emp.getLastName());
+        ageFieldmodify.setText(String.valueOf( emp.getAge()));
         comboBoxDeppartementmodify.setSelectedItem(emp.getDepartment().getDepartmentName());
+        departmentIDfieldmodify.setText(String.valueOf(emp.getDepartment().getDepartmentID()));
+        positionFieldmodify.setText(emp.getEmployeePosition());
         
-        
-        
+    }
+    
+    private void goBack(){
+     ViewEmployeesScreen VE= new ViewEmployeesScreen();
+     VE.setVisible(true);
+     this.dispose();
+     
         
     }
     
@@ -60,11 +69,11 @@ public class ModifyEmployeeScreen extends javax.swing.JDialog {
 
         modifyLabel = new javax.swing.JLabel();
         enterIDLabelmodify = new javax.swing.JLabel();
-        idAutomaticGeneratedLabelmodify = new javax.swing.JLabel();
+        idAutomaticGeneratedfieldmodify = new javax.swing.JLabel();
         fistNameLabelmodify = new javax.swing.JLabel();
         firstNameFieldmodify = new javax.swing.JTextField();
         LastNameLabelmodify = new javax.swing.JLabel();
-        lastNameField = new javax.swing.JTextField();
+        lastNameFieldmodify = new javax.swing.JTextField();
         ageLabelmodify = new javax.swing.JLabel();
         ageFieldmodify = new javax.swing.JTextField();
         departementLabelmodify = new javax.swing.JLabel();
@@ -97,8 +106,8 @@ public class ModifyEmployeeScreen extends javax.swing.JDialog {
         enterIDLabelmodify.setForeground(new java.awt.Color(255, 51, 255));
         enterIDLabelmodify.setText("Employee ID (can't be modified):");
 
-        idAutomaticGeneratedLabelmodify.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        idAutomaticGeneratedLabelmodify.setForeground(new java.awt.Color(0, 102, 102));
+        idAutomaticGeneratedfieldmodify.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        idAutomaticGeneratedfieldmodify.setForeground(new java.awt.Color(0, 102, 102));
 
         fistNameLabelmodify.setFont(new java.awt.Font("Arial", 2, 18)); // NOI18N
         fistNameLabelmodify.setForeground(new java.awt.Color(255, 51, 255));
@@ -112,9 +121,9 @@ public class ModifyEmployeeScreen extends javax.swing.JDialog {
         LastNameLabelmodify.setForeground(new java.awt.Color(255, 51, 255));
         LastNameLabelmodify.setText("Last Name:");
 
-        lastNameField.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        lastNameField.setForeground(new java.awt.Color(0, 255, 204));
-        lastNameField.addActionListener(this::lastNameFieldActionPerformed);
+        lastNameFieldmodify.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        lastNameFieldmodify.setForeground(new java.awt.Color(0, 255, 204));
+        lastNameFieldmodify.addActionListener(this::lastNameFieldmodifyActionPerformed);
 
         ageLabelmodify.setFont(new java.awt.Font("Arial", 2, 18)); // NOI18N
         ageLabelmodify.setForeground(new java.awt.Color(255, 51, 255));
@@ -228,7 +237,7 @@ public class ModifyEmployeeScreen extends javax.swing.JDialog {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(enterIDLabelmodify)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(idAutomaticGeneratedLabelmodify, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(idAutomaticGeneratedfieldmodify, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addComponent(HoursworkedLabelmodify, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -242,7 +251,7 @@ public class ModifyEmployeeScreen extends javax.swing.JDialog {
                                 .addGap(38, 38, 38)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(firstNameFieldmodify)
-                                    .addComponent(lastNameField)
+                                    .addComponent(lastNameFieldmodify)
                                     .addComponent(ageFieldmodify)
                                     .addComponent(comboBoxDeppartementmodify, 0, 186, Short.MAX_VALUE)
                                     .addComponent(positionFieldmodify)
@@ -275,7 +284,7 @@ public class ModifyEmployeeScreen extends javax.swing.JDialog {
                 .addGap(37, 37, 37)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(enterIDLabelmodify)
-                    .addComponent(idAutomaticGeneratedLabelmodify))
+                    .addComponent(idAutomaticGeneratedfieldmodify))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(fistNameLabelmodify)
@@ -283,7 +292,7 @@ public class ModifyEmployeeScreen extends javax.swing.JDialog {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(LastNameLabelmodify)
-                    .addComponent(lastNameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lastNameFieldmodify, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ageLabelmodify)
@@ -341,10 +350,10 @@ public class ModifyEmployeeScreen extends javax.swing.JDialog {
 
     }//GEN-LAST:event_firstNameFieldmodifyActionPerformed
 
-    private void lastNameFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lastNameFieldActionPerformed
+    private void lastNameFieldmodifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lastNameFieldmodifyActionPerformed
         // TODO add your handling code here:
 
-    }//GEN-LAST:event_lastNameFieldActionPerformed
+    }//GEN-LAST:event_lastNameFieldmodifyActionPerformed
 
     private void ageFieldmodifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ageFieldmodifyActionPerformed
         // TODO add your handling code here:
@@ -489,8 +498,8 @@ public class ModifyEmployeeScreen extends javax.swing.JDialog {
     private javax.swing.JLabel enterIDLabelmodify;
     private javax.swing.JTextField firstNameFieldmodify;
     private javax.swing.JLabel fistNameLabelmodify;
-    private javax.swing.JLabel idAutomaticGeneratedLabelmodify;
-    private javax.swing.JTextField lastNameField;
+    private javax.swing.JLabel idAutomaticGeneratedfieldmodify;
+    private javax.swing.JTextField lastNameFieldmodify;
     private javax.swing.JButton modifyButton;
     private javax.swing.JLabel modifyLabel;
     private javax.swing.JTextField positionFieldmodify;
