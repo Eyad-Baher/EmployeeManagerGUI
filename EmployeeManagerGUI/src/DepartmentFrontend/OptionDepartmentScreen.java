@@ -112,9 +112,10 @@ public class OptionDepartmentScreen extends javax.swing.JFrame {
 
     private void viewDepEmpsbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewDepEmpsbuttonActionPerformed
         // TODO add your handling code here:
-        this.setVisible(false);
+        
         ViewDepartmentEmployeesScreen depEmpScreen= new ViewDepartmentEmployeesScreen(this);
         depEmpScreen.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_viewDepEmpsbuttonActionPerformed
 
     /**
