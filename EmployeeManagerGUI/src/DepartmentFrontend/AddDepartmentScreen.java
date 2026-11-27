@@ -106,7 +106,7 @@ public class AddDepartmentScreen extends javax.swing.JFrame {
         else
         {
             DepartmentManager.addDepartment(name.trim());
-            DepartmentFileHandling.addDepToFile(DepartmentManager.depList.get(DepartmentManager.depList.size()-1));
+            DepartmentFileHandling.addDepToFile(DepartmentManager.getDepList().get(DepartmentManager.getDepList().size()-1));
             JOptionPane.showMessageDialog(this, "New department added successfully.");
         }
     }//GEN-LAST:event_addButtonActionPerformed

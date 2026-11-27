@@ -35,7 +35,7 @@ public class ViewDepartments extends javax.swing.JFrame {
     
     public void fillTable(){
         DepartmentFileHandling.readFile();
-        ArrayList<Department> deps= DepartmentManager.depList;
+        ArrayList<Department> deps= DepartmentManager.getDepList();
         
         DefaultTableModel m= (DefaultTableModel)departmentsTable.getModel();
         m.setRowCount(0);
