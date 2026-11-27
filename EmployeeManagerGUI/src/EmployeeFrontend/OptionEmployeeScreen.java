@@ -36,9 +36,7 @@ public class OptionEmployeeScreen extends javax.swing.JFrame {
         viewButton = new javax.swing.JButton();
         addPhoto = new javax.swing.JLabel();
         viewPhoto = new javax.swing.JLabel();
-        modifyPhoto = new javax.swing.JLabel();
-        modifyButton = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        logoutbutton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(51, 51, 0));
@@ -69,79 +67,59 @@ public class OptionEmployeeScreen extends javax.swing.JFrame {
 
         viewPhoto.setIcon(new javax.swing.ImageIcon("C:\\Users\\abdel\\OneDrive\\Documents\\NetBeansProjects\\EmployeeManagerGUI\\EmployeeManagerGUI\\view-employees-icon-128.png")); // NOI18N
 
-        modifyPhoto.setIcon(new javax.swing.ImageIcon("C:\\Users\\abdel\\OneDrive\\Documents\\NetBeansProjects\\EmployeeManagerGUI\\EmployeeManagerGUI\\modify-employee-icon-128.png")); // NOI18N
-
-        modifyButton.setBackground(new java.awt.Color(102, 255, 204));
-        modifyButton.setFont(new java.awt.Font("Segoe UI Semibold", 2, 14)); // NOI18N
-        modifyButton.setForeground(new java.awt.Color(0, 0, 153));
-        modifyButton.setText("Modify Employee");
-        modifyButton.addActionListener(this::modifyButtonActionPerformed);
-
-        jButton1.setBackground(new java.awt.Color(255, 0, 0));
-        jButton1.setFont(new java.awt.Font("Segoe UI Semibold", 1, 18)); // NOI18N
-        jButton1.setIcon(new javax.swing.ImageIcon("C:\\Users\\abdel\\OneDrive\\Documents\\NetBeansProjects\\EmployeeManagerGUI\\EmployeeManagerGUI\\logout-icon-64 (1).png")); // NOI18N
-        jButton1.setText("Log-out");
-        jButton1.addActionListener(this::jButton1ActionPerformed);
+        logoutbutton.setBackground(new java.awt.Color(255, 0, 0));
+        logoutbutton.setFont(new java.awt.Font("Segoe UI Semibold", 1, 18)); // NOI18N
+        logoutbutton.setIcon(new javax.swing.ImageIcon("C:\\Users\\abdel\\OneDrive\\Documents\\NetBeansProjects\\EmployeeManagerGUI\\EmployeeManagerGUI\\logout-icon-64 (1).png")); // NOI18N
+        logoutbutton.setText("Log-out");
+        logoutbutton.addActionListener(this::logoutbuttonActionPerformed);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(welcomeLabel)
-                                .addGap(112, 112, 112))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(chooseLabel)
-                                .addGap(200, 200, 200))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(23, 23, 23)
-                                .addComponent(addPhoto, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(addButton, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 79, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(viewButton)
-                            .addComponent(viewPhoto, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(57, 57, 57)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(modifyPhoto, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(modifyButton))
-                        .addGap(25, 25, 25))))
+                .addContainerGap(142, Short.MAX_VALUE)
+                .addComponent(welcomeLabel)
+                .addGap(112, 112, 112))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(29, 29, 29)
+                        .addComponent(addPhoto, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(14, 14, 14)
+                        .addComponent(addButton, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(viewPhoto, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(logoutbutton, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(viewButton))
                 .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(201, 201, 201)
+                .addComponent(chooseLabel)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(12, 12, 12)
                 .addComponent(welcomeLabel)
-                .addGap(18, 18, 18)
-                .addComponent(chooseLabel)
-                .addGap(40, 40, 40)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(addPhoto, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(addButton))
+                        .addGap(18, 18, 18)
+                        .addComponent(chooseLabel)
+                        .addGap(84, 84, 84)
+                        .addComponent(viewPhoto, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(viewButton))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(viewPhoto, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE)
-                            .addComponent(modifyPhoto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(viewButton)
-                            .addComponent(modifyButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addGap(57, 57, 57)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(118, 118, 118)
+                        .addComponent(addPhoto, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(addButton)))
+                .addGap(51, 51, 51)
+                .addComponent(logoutbutton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -166,14 +144,10 @@ public class OptionEmployeeScreen extends javax.swing.JFrame {
         
     }//GEN-LAST:event_viewButtonActionPerformed
 
-    private void modifyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifyButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_modifyButtonActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void logoutbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutbuttonActionPerformed
         // TODO add your handling code here:
         JOptionPane.showMessageDialog(this, "LOGGED OUT");
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_logoutbuttonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -204,9 +178,7 @@ public class OptionEmployeeScreen extends javax.swing.JFrame {
     private javax.swing.JButton addButton;
     private javax.swing.JLabel addPhoto;
     private javax.swing.JLabel chooseLabel;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton modifyButton;
-    private javax.swing.JLabel modifyPhoto;
+    private javax.swing.JButton logoutbutton;
     private javax.swing.JButton viewButton;
     private javax.swing.JLabel viewPhoto;
     private javax.swing.JLabel welcomeLabel;
