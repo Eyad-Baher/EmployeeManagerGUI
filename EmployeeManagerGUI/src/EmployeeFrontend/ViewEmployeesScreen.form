@@ -63,9 +63,9 @@
                               <Component id="SearchIDField" min="-2" pref="241" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="showAllButton" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
                               <Component id="refreshButton" min="-2" pref="88" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="65" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="71" max="-2" attributes="0"/>
                               <Component id="editButton" min="-2" pref="84" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="deleteButton" min="-2" pref="81" max="-2" attributes="0"/>
@@ -93,8 +93,8 @@
                       <Component id="SearchIDLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="SearchIDField" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="showAllButton" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="refreshButton" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
                       <Component id="editButton" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
+                      <Component id="refreshButton" alignment="3" max="32767" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
