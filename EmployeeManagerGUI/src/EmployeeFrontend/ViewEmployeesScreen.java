@@ -72,8 +72,8 @@ public class ViewEmployeesScreen extends javax.swing.JFrame {
         SearchIDLabel = new javax.swing.JLabel();
         SearchIDField = new javax.swing.JTextField();
         showAllButton = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        refreshButton = new javax.swing.JButton();
+        backButton = new javax.swing.JButton();
         editButton = new javax.swing.JButton();
         deleteButton = new javax.swing.JButton();
 
@@ -102,7 +102,15 @@ public class ViewEmployeesScreen extends javax.swing.JFrame {
             new String [] {
                 "Employee ID", "First Name", "Last Name", "Age", "Department Name", "Department ID", "Position", "Type", "Basic Salary / Hourly Rate", "Bonus / Hours Worked", "Total Salary"
             }
-        ));
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.Object.class, java.lang.Object.class, java.lang.Integer.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
         employeesTable.addAncestorListener(new javax.swing.event.AncestorListener() {
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
                 employeesTableAncestorAdded(evt);
@@ -136,14 +144,14 @@ public class ViewEmployeesScreen extends javax.swing.JFrame {
         showAllButton.setText("Show all");
         showAllButton.addActionListener(this::showAllButtonActionPerformed);
 
-        jButton1.setBackground(new java.awt.Color(0, 204, 51));
-        jButton1.setText("Refresh");
-        jButton1.addActionListener(this::jButton1ActionPerformed);
+        refreshButton.setBackground(new java.awt.Color(0, 204, 51));
+        refreshButton.setText("Refresh");
+        refreshButton.addActionListener(this::refreshButtonActionPerformed);
 
-        jButton2.setBackground(new java.awt.Color(204, 0, 0));
-        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton2.setText("<= Back");
-        jButton2.addActionListener(this::jButton2ActionPerformed);
+        backButton.setBackground(new java.awt.Color(204, 0, 0));
+        backButton.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        backButton.setText("<= Back");
+        backButton.addActionListener(this::backButtonActionPerformed);
 
         editButton.setBackground(new java.awt.Color(51, 153, 255));
         editButton.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
@@ -166,7 +174,7 @@ public class ViewEmployeesScreen extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(backButton, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(250, 250, 250)
                                 .addComponent(viewEmployeesLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
@@ -176,7 +184,7 @@ public class ViewEmployeesScreen extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(showAllButton)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(refreshButton, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(65, 65, 65)
                                 .addComponent(editButton, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -189,7 +197,7 @@ public class ViewEmployeesScreen extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(19, 19, 19)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 46, Short.MAX_VALUE)
+                    .addComponent(backButton, javax.swing.GroupLayout.DEFAULT_SIZE, 46, Short.MAX_VALUE)
                     .addComponent(viewEmployeesLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -198,7 +206,7 @@ public class ViewEmployeesScreen extends javax.swing.JFrame {
                         .addComponent(SearchIDLabel)
                         .addComponent(SearchIDField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(showAllButton)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(refreshButton, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(editButton, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -240,20 +248,20 @@ public class ViewEmployeesScreen extends javax.swing.JFrame {
 
     }//GEN-LAST:event_showAllButtonActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void refreshButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshButtonActionPerformed
         // TODO add your handling code here:
         fillTable();
 
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_refreshButtonActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
         // TODO add your handling code here:
         OptionEmployeeScreen optionScreen = new OptionEmployeeScreen();
 
-        this.setVisible(false);
+        this.dispose();
         optionScreen.setVisible(true);
 
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_backButtonActionPerformed
 
     private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editButtonActionPerformed
         // TODO add your handling code here:
@@ -266,7 +274,7 @@ public class ViewEmployeesScreen extends javax.swing.JFrame {
             return;
         }
 
-        ModifyEmployeeScreen modScreen = new ModifyEmployeeScreen(this, true);
+        ModifyEmployeeScreen modScreen = new ModifyEmployeeScreen(this, true,empSelected);
         modScreen.setVisible(true);
         fillTable();
 
@@ -286,9 +294,9 @@ public class ViewEmployeesScreen extends javax.swing.JFrame {
         int choice = JOptionPane.showConfirmDialog(null,
                 "Are you sure  you want to delete " + empDel.getEmployeeID() + " " + empDel.getFirstName()
                 + " " + empDel.getLastName(),
-                 "Delete", JOptionPane.YES_NO_CANCEL_OPTION);
+                 "Delete", JOptionPane.YES_NO_OPTION,JOptionPane.WARNING_MESSAGE);
 
-        if (choice != 0) {
+        if (choice != JOptionPane.YES_OPTION) {
             JOptionPane.showMessageDialog(null, "Delete unsuccessful", "Failed to delete", JOptionPane.OK_OPTION);
             return;
         }
@@ -298,7 +306,7 @@ public class ViewEmployeesScreen extends javax.swing.JFrame {
         if (!del) {
             JOptionPane.showMessageDialog(null, "Failed to Delete Employee", "Failed", JOptionPane.WARNING_MESSAGE);
         } else {
-            JOptionPane.showMessageDialog(null, "Delete Successful", "Done", JOptionPane.OK_OPTION);
+            JOptionPane.showMessageDialog(null, "Delete Successful", "Done", JOptionPane.INFORMATION_MESSAGE);
             fillTable();
 
         }
@@ -335,7 +343,6 @@ public class ViewEmployeesScreen extends javax.swing.JFrame {
         int viewRow = employeesTable.getSelectedRow();
 
         if (viewRow == -1) {
-            JOptionPane.showMessageDialog(null, "No Employee selected. Please select an Employee.", "No Option Selected", JOptionPane.WARNING_MESSAGE);
             return null;
         }
 
@@ -349,7 +356,7 @@ public class ViewEmployeesScreen extends javax.swing.JFrame {
             return null;
         }
 
-        return EmployeeManager.getEmployeeAtIdx(id);
+        return EmployeeManager.getEmployeeAtIdx(arrayEmpIndex);
 
     }
 
@@ -357,14 +364,14 @@ public class ViewEmployeesScreen extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField SearchIDField;
     private javax.swing.JLabel SearchIDLabel;
+    private javax.swing.JButton backButton;
     private javax.swing.JButton deleteButton;
     private javax.swing.JButton editButton;
     private javax.swing.JTable employeesTable;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
+    private javax.swing.JButton refreshButton;
     private javax.swing.JButton showAllButton;
     private javax.swing.JLabel viewEmployeesLabel;
     // End of variables declaration//GEN-END:variables

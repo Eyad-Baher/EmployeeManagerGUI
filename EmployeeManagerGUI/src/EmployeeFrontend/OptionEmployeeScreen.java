@@ -152,13 +152,18 @@ public class OptionEmployeeScreen extends javax.swing.JFrame {
         // TODO add your handling code here:
         AddEmployeeScreen addWindow = new AddEmployeeScreen();
 
-        this.setVisible(false);
+        this.dispose();
         addWindow.setVisible(true);
 
     }//GEN-LAST:event_addButtonActionPerformed
 
     private void viewButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewButtonActionPerformed
         // TODO add your handling code here:
+        ViewEmployeesScreen viewScreen = new ViewEmployeesScreen();
+        
+        this.dispose();
+        viewScreen.setVisible(true);
+        
     }//GEN-LAST:event_viewButtonActionPerformed
 
     private void modifyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifyButtonActionPerformed

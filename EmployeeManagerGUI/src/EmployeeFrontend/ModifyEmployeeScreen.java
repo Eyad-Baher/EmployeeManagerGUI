@@ -4,19 +4,24 @@
  */
 package EmployeeFrontend;
 
+import EmployeeBackend.*;
+
 /**
  *
  * @author HP
  */
 public class ModifyEmployeeScreen extends javax.swing.JDialog {
-    
+
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(ModifyEmployeeScreen.class.getName());
 
     /**
      * Creates new form ModifyEmployeeScreen
      */
-    public ModifyEmployeeScreen(java.awt.Frame parent, boolean modal) {
+    private Employee emp;
+
+    public ModifyEmployeeScreen(java.awt.Frame parent, boolean modal, Employee emp) {
         super(parent, modal);
+        this.emp = emp;
         initComponents();
     }
 
@@ -35,7 +40,7 @@ public class ModifyEmployeeScreen extends javax.swing.JDialog {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGap(0, 604, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -70,7 +75,16 @@ public class ModifyEmployeeScreen extends javax.swing.JDialog {
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                ModifyEmployeeScreen dialog = new ModifyEmployeeScreen(new javax.swing.JFrame(), true);
+                // Grab the first employee from the manager for testing
+                Employee testEmp = EmployeeManager.getEmployees().isEmpty()
+                        ? null
+                        : EmployeeManager.getEmployees().get(0);
+
+                if (testEmp == null) {
+                    javax.swing.JOptionPane.showMessageDialog(null, "No employees to test with.");
+                }
+
+                ModifyEmployeeScreen dialog = new ModifyEmployeeScreen(new javax.swing.JFrame(), true, testEmp);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
