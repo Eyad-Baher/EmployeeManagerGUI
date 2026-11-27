@@ -4,6 +4,11 @@
  */
 package DepartmentFrontend;
 
+import DepartmentBackend.DepartmentFileHandling;
+import DepartmentBackend.DepartmentManager;
+import EmployeeBackend.EmployeeFileHandler;
+import EmployeeBackend.EmployeeManager;
+
 /**
  *
  * @author maria
@@ -28,22 +33,18 @@ public class OptionDepartmentScreen extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        addDepButton = new javax.swing.JButton();
         viewDepartmentsButton = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        viewDepEmpsbutton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jButton1.setBackground(new java.awt.Color(102, 255, 204));
-        jButton1.setFont(new java.awt.Font("Segoe UI Semibold", 2, 14)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(0, 0, 153));
-        jButton1.setText("Add Department");
-        jButton1.addActionListener(this::jButton1ActionPerformed);
-
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jComboBox1.addActionListener(this::jComboBox1ActionPerformed);
+        addDepButton.setBackground(new java.awt.Color(102, 255, 204));
+        addDepButton.setFont(new java.awt.Font("Segoe UI Semibold", 2, 14)); // NOI18N
+        addDepButton.setForeground(new java.awt.Color(0, 0, 153));
+        addDepButton.setText("Add Department");
+        addDepButton.addActionListener(this::addDepButtonActionPerformed);
 
         viewDepartmentsButton.setBackground(new java.awt.Color(102, 255, 204));
         viewDepartmentsButton.setFont(new java.awt.Font("Segoe UI Semibold", 2, 14)); // NOI18N
@@ -51,54 +52,56 @@ public class OptionDepartmentScreen extends javax.swing.JFrame {
         viewDepartmentsButton.setText("View Departments");
         viewDepartmentsButton.addActionListener(this::viewDepartmentsButtonActionPerformed);
 
-        jLabel1.setText("jLabel1");
-
         jLabel2.setFont(new java.awt.Font("Serif", 1, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 0, 153));
         jLabel2.setText("Department Management");
+
+        viewDepEmpsbutton.setBackground(new java.awt.Color(102, 255, 204));
+        viewDepEmpsbutton.setFont(new java.awt.Font("Segoe UI Semibold", 2, 14)); // NOI18N
+        viewDepEmpsbutton.setForeground(new java.awt.Color(0, 0, 153));
+        viewDepEmpsbutton.setText("View Employees in Department");
+        viewDepEmpsbutton.addActionListener(this::viewDepEmpsbuttonActionPerformed);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(115, 115, 115)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel2)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(viewDepartmentsButton)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton1)
-                        .addGap(48, 48, 48)))
-                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 71, Short.MAX_VALUE)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(73, 73, 73))
+                        .addGap(70, 70, 70)
+                        .addComponent(viewDepartmentsButton)
+                        .addGap(18, 18, 18)
+                        .addComponent(addDepButton)
+                        .addGap(18, 18, 18)
+                        .addComponent(viewDepEmpsbutton))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(197, 197, 197)
+                        .addComponent(jLabel2)))
+                .addContainerGap(78, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(48, 48, 48)
+                .addGap(66, 66, 66)
                 .addComponent(jLabel2)
-                .addGap(99, 99, 99)
+                .addGap(81, 81, 81)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(viewDepartmentsButton)
-                    .addComponent(jButton1)
-                    .addComponent(jLabel1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(241, Short.MAX_VALUE))
+                    .addComponent(addDepButton)
+                    .addComponent(viewDepEmpsbutton))
+                .addContainerGap(269, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void addDepButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addDepButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+        AddDepartmentScreen addDepScreen= new AddDepartmentScreen(this);
+        this.setVisible(false);
+        addDepScreen.setVisible(true);
+    }//GEN-LAST:event_addDepButtonActionPerformed
 
     private void viewDepartmentsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewDepartmentsButtonActionPerformed
         // TODO add your handling code here:
@@ -107,9 +110,12 @@ public class OptionDepartmentScreen extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_viewDepartmentsButtonActionPerformed
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+    private void viewDepEmpsbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewDepEmpsbuttonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ActionPerformed
+        this.setVisible(false);
+        ViewDepartmentEmployeesScreen depEmpScreen= new ViewDepartmentEmployeesScreen(this);
+        depEmpScreen.setVisible(true);
+    }//GEN-LAST:event_viewDepEmpsbuttonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -133,14 +139,18 @@ public class OptionDepartmentScreen extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
+        DepartmentFileHandling.loadDep();
+        EmployeeFileHandler.loadFile();
+        System.out.println("Deps: "+DepartmentManager.depList.size());
+        System.out.println("Emps: "+EmployeeManager.employees.size());
+        java.awt.EventQueue.invokeLater(() -> new OptionDepartmentScreen().setVisible(true));
         java.awt.EventQueue.invokeLater(() -> new OptionDepartmentScreen().setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton addDepButton;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JButton viewDepEmpsbutton;
     private javax.swing.JButton viewDepartmentsButton;
     // End of variables declaration//GEN-END:variables
 }
