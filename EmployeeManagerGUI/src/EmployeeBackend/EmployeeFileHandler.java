@@ -21,12 +21,12 @@ public class EmployeeFileHandler {
     public static String toCSV(Employee emp) {
         if (emp instanceof FullTimeEmployee) {
             return emp.getEmployeeType().toUpperCase() + "," + emp.getEmployeeID() + "," + emp.getFirstName() + "," + emp.getLastName() + ","
-                    + emp.getAge() + "," + emp.getDepartment().getDepartmentName() + "," + emp.getDepartment().getDepartmentID() + "," + emp.getEmployeePosition() + ","
+                    + emp.getAge() + "," + emp.getDepartment().getName()+ "," + emp.getDepartment().getId()+ "," + emp.getEmployeePosition() + ","
                     + ((FullTimeEmployee) emp).getBasicMonthlySalary() + "," + ((FullTimeEmployee) emp).getMonthlyBonus() + ","
                     + emp.calcSalary();
         } else if (emp instanceof PartTimeEmployee) {
             return emp.getEmployeeType().toUpperCase() + "," + emp.getEmployeeID() + "," + emp.getFirstName() + "," + emp.getLastName() + ","
-                    + emp.getAge() + "," + emp.getDepartment().getDepartmentName() + "," + emp.getDepartment().getDepartmentID() + "," + emp.getEmployeePosition() + ","
+                    + emp.getAge() + "," + emp.getDepartment().getName()+ "," + emp.getDepartment().getId()+ "," + emp.getEmployeePosition() + ","
                     + ((PartTimeEmployee) emp).getHourlyPaymentRate() + "," + ((PartTimeEmployee) emp).getHoursWorked() + ","
                     + emp.calcSalary();
         } else {

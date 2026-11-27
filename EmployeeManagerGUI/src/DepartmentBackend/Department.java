@@ -6,35 +6,49 @@ package DepartmentBackend;
 
 /**
  *
- * @author HP
+ * @author maria
  */
 public class Department {
-    
-    private String departmentName;
-    private int DepartmentID;
+    private static int depNum=0;
+    private String name;
+    private int id;
 
-    public Department(String departmentName, int DepartmentID) {
-        this.departmentName = departmentName;
-        this.DepartmentID = DepartmentID;
-    }
-
-    public String getDepartmentName() {
-        return departmentName;
-    }
-
-    public void setDepartmentName(String departmentName) {
-        this.departmentName = departmentName;
-    }
-
-    public int getDepartmentID() {
-        return DepartmentID;
-    }
-
-    public void setDepartmentID(int DepartmentID) {
-        this.DepartmentID = DepartmentID;
+    public Department(String name) {
+        this.name = name;
+        depNum++;
+        this.id = depNum;
+        
     }
     
+    public Department(String name, int id) {   
+    this.name = name;
+    this.id = id;
+    if(id>depNum)
+        depNum=id;
+}
+
+    public String getName() {
+        return name;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public static int getDepNum() {
+        return depNum;
+    }
     
-    
-    
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    protected void setId(int id) {
+        this.id = id;
+    }
+
+    public static void setDepNum(int depNum) {
+        Department.depNum = depNum;
+    }
+   
 }

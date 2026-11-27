@@ -46,11 +46,11 @@ public class ViewEmployeesScreen extends javax.swing.JFrame {
         for (Employee e : EmployeeManager.getEmployees()) {
             if (e instanceof FullTimeEmployee) {
                 m.addRow(new Object[]{e.getEmployeeID(), e.getFirstName(), e.getLastName(), e.getAge(),
-                    e.getDepartment().getDepartmentName(), e.getDepartment().getDepartmentID(), e.getEmployeePosition(), e.getEmployeeType(),
+                    e.getDepartment().getName(), e.getDepartment().getId(), e.getEmployeePosition(), e.getEmployeeType(),
                     ((FullTimeEmployee) e).getBasicMonthlySalary(), ((FullTimeEmployee) e).getMonthlyBonus(), e.calcSalary()});
             } else if (e instanceof PartTimeEmployee) {
                 m.addRow(new Object[]{e.getEmployeeID(), e.getFirstName(), e.getLastName(), e.getAge(),
-                    e.getDepartment().getDepartmentName(), e.getDepartment().getDepartmentID(), e.getEmployeePosition(), e.getEmployeeType(),
+                    e.getDepartment().getName(), e.getDepartment().getId(), e.getEmployeePosition(), e.getEmployeeType(),
                     ((PartTimeEmployee) e).getHourlyPaymentRate(), ((PartTimeEmployee) e).getHoursWorked(), e.calcSalary()});
             }
         }

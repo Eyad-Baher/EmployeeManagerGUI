@@ -59,10 +59,10 @@ public class ModifyEmployeeScreen extends javax.swing.JDialog {
         firstNameFieldmodify.setText(emp.getFirstName());
         lastNameFieldmodify.setText(emp.getLastName());
         ageFieldmodify.setText(String.valueOf(emp.getAge()));
-        departmentIDfieldmodify.setText(String.valueOf(emp.getDepartment().getDepartmentID()));
+        departmentIDfieldmodify.setText(String.valueOf(emp.getDepartment().getId()));
         positionFieldmodify.setText(emp.getEmployeePosition());
 
-        comboBoxDeppartementmodify.setSelectedItem(emp.getDepartment().getDepartmentName());
+        comboBoxDeppartementmodify.setSelectedItem(emp.getDepartment().getName());
     }
 
     private void setSalaryFields() {

@@ -58,7 +58,7 @@ public class EmployeeManager {
 
     public static int findByDepartment(Department empDep) {
         for (int i = 0; i < employees.size(); i++) {
-            if (employees.get(i).getDepartment().getDepartmentName().toLowerCase().equals(empDep.getDepartmentName().toLowerCase())) {
+            if (employees.get(i).getDepartment().getName().toLowerCase().equals(empDep.getName().toLowerCase())) {
 
                 return i;
 
