@@ -104,13 +104,13 @@ public class HomeScreen extends javax.swing.JFrame {
 
     private void employeeManagementButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_employeeManagementButtonActionPerformed
         OptionEmployeeScreen e = new OptionEmployeeScreen();
-        this.setVisible(false);
+        this.dispose();
         e.setVisible(true);
     }//GEN-LAST:event_employeeManagementButtonActionPerformed
 
     private void departmentManagementButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_departmentManagementButtonActionPerformed
         OptionDepartmentScreen d = new OptionDepartmentScreen();
-        this.setVisible(false);
+        this.dispose();
         d.setVisible(true);
     }//GEN-LAST:event_departmentManagementButtonActionPerformed
 

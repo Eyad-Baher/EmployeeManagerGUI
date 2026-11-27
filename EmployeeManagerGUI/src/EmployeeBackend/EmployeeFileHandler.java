@@ -8,7 +8,7 @@ import DepartmentBackend.Department;
 import java.io.*;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
-
+import DepartmentBackend.*;
 /**
  *
  * @author HP
@@ -67,7 +67,7 @@ public class EmployeeFileHandler {
         int empDepID = Integer.parseInt(splitDetails[6]);
         String empPos = splitDetails[7];
         
-        Department empDep = new Department(empDepName, empDepID);
+        Department empDep = DepartmentManager.getDepartmentById(empDepID);
         
         double FullBasicSalary;
         double FullMonthlyBonus;

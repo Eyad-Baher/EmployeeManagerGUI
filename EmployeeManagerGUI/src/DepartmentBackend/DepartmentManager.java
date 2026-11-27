@@ -19,7 +19,7 @@ public class DepartmentManager {
     private static ArrayList<Department> depList  = new ArrayList<>();
     
     
-    public Department getDepartmentById(int id)
+    public static Department getDepartmentById(int id)
     {
         for(Department d: DepartmentManager.depList)
         {
@@ -29,7 +29,15 @@ public class DepartmentManager {
         return null;
     }
     
-    
+    public static Department getDepartmentByName(String name)
+    {
+        for(Department d: DepartmentManager.depList)
+        {
+            if(name.trim().equalsIgnoreCase(d.getName().trim()))
+                return d;
+        }
+        return null;
+    }
     public static ArrayList<Department> getDepList()
     {
         return depList;

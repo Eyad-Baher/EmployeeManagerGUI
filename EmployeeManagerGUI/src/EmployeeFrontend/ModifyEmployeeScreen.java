@@ -5,9 +5,8 @@
 package EmployeeFrontend;
 
 import DepartmentBackend.Department;
-import javax.swing.border.EmptyBorder;
+import DepartmentBackend.DepartmentManager;
 import EmployeeBackend.*;
-import com.sun.source.tree.ParenthesizedTree;
 import javax.swing.JOptionPane;
 
 /**
@@ -15,8 +14,6 @@ import javax.swing.JOptionPane;
  * @author HP
  */
 public class ModifyEmployeeScreen extends javax.swing.JDialog {
-
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(ModifyEmployeeScreen.class.getName());
 
     /**
      * Creates new form ModifyEmployeeScreen
@@ -44,6 +41,10 @@ public class ModifyEmployeeScreen extends javax.swing.JDialog {
         this.emp = emp;
         initComponents();
 
+        comboBoxDeppartementmodify.removeAllItems();
+        for (Department d : DepartmentManager.getDepList()) {
+            comboBoxDeppartementmodify.addItem(d.getName());
+        }
         try {
             loadEmp();
         } catch (NullPointerException e) {
@@ -103,7 +104,6 @@ public class ModifyEmployeeScreen extends javax.swing.JDialog {
         departementLabelmodify = new javax.swing.JLabel();
         comboBoxDeppartementmodify = new javax.swing.JComboBox<>();
         departementIDLabelmodify = new javax.swing.JLabel();
-        departmentIDfieldmodify = new javax.swing.JTextField();
         positionLabelmodify = new javax.swing.JLabel();
         positionFieldmodify = new javax.swing.JTextField();
         employeeTypeLabelmodify = new javax.swing.JLabel();
@@ -119,6 +119,7 @@ public class ModifyEmployeeScreen extends javax.swing.JDialog {
         modifyButton = new javax.swing.JButton();
         BackButton = new javax.swing.JButton();
         ClearButton = new javax.swing.JButton();
+        departmentIDfieldmodify = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -174,10 +175,6 @@ public class ModifyEmployeeScreen extends javax.swing.JDialog {
         departementIDLabelmodify.setFont(new java.awt.Font("Arial", 2, 18)); // NOI18N
         departementIDLabelmodify.setForeground(new java.awt.Color(255, 51, 255));
         departementIDLabelmodify.setText("Department ID:");
-
-        departmentIDfieldmodify.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        departmentIDfieldmodify.setForeground(new java.awt.Color(0, 255, 204));
-        departmentIDfieldmodify.addActionListener(this::departmentIDfieldmodifyActionPerformed);
 
         positionLabelmodify.setFont(new java.awt.Font("Arial", 2, 18)); // NOI18N
         positionLabelmodify.setForeground(new java.awt.Color(255, 51, 255));
@@ -244,6 +241,9 @@ public class ModifyEmployeeScreen extends javax.swing.JDialog {
         ClearButton.addChangeListener(this::ClearButtonStateChanged);
         ClearButton.addActionListener(this::ClearButtonActionPerformed);
 
+        departmentIDfieldmodify.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        departmentIDfieldmodify.setForeground(new java.awt.Color(0, 102, 102));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -290,11 +290,15 @@ public class ModifyEmployeeScreen extends javax.swing.JDialog {
                                     .addComponent(departementIDLabelmodify, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(BonusLabelmodify, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(HourlyRateLabelmodify, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(41, 41, 41)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(departmentIDfieldmodify, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(BonusFieldmodify, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(HourlyRateFieldmodify, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(41, 41, 41)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(BonusFieldmodify, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(HourlyRateFieldmodify, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(30, 30, 30)
+                                        .addComponent(departmentIDfieldmodify, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addComponent(ClearButton, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(113, Short.MAX_VALUE))
         );
@@ -329,7 +333,7 @@ public class ModifyEmployeeScreen extends javax.swing.JDialog {
                     .addComponent(departementLabelmodify)
                     .addComponent(comboBoxDeppartementmodify, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(departementIDLabelmodify)
-                    .addComponent(departmentIDfieldmodify, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(departmentIDfieldmodify))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
@@ -389,17 +393,25 @@ public class ModifyEmployeeScreen extends javax.swing.JDialog {
 
     private void comboBoxDeppartementmodifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxDeppartementmodifyActionPerformed
         // TODO add your handling code here:
-        empDepName = String.valueOf(comboBoxDeppartementmodify.getSelectedItem());
+
+        Object selected = comboBoxDeppartementmodify.getSelectedItem();
+        if (selected == null) {
+            departmentIDfieldmodify.setText("");
+            return;
+        }
+        Department depSelected = DepartmentManager.getDepartmentByName(selected.toString());
+        if (depSelected == null) {
+            departmentIDfieldmodify.setText("");
+        } else {
+            departmentIDfieldmodify.setText(String.valueOf(depSelected.getId()));
+        }
+
+
     }//GEN-LAST:event_comboBoxDeppartementmodifyActionPerformed
 
     private void comboBoxDeppartementmodifyKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_comboBoxDeppartementmodifyKeyReleased
         // TODO add your handling code here:
     }//GEN-LAST:event_comboBoxDeppartementmodifyKeyReleased
-
-    private void departmentIDfieldmodifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_departmentIDfieldmodifyActionPerformed
-        // TODO add your handling code here:
-
-    }//GEN-LAST:event_departmentIDfieldmodifyActionPerformed
 
     private void positionFieldmodifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_positionFieldmodifyActionPerformed
         // TODO add your handling code here:
@@ -503,7 +515,6 @@ public class ModifyEmployeeScreen extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(null, "Invalid department ID");
             departmentIDfieldmodify.setText("");
             departmentIDfieldmodify.requestFocusInWindow();
-            departmentIDfieldmodify.selectAll();
             return;
         }
 
@@ -676,7 +687,7 @@ public class ModifyEmployeeScreen extends javax.swing.JDialog {
     private javax.swing.JComboBox<String> comboBoxDeppartementmodify;
     private javax.swing.JLabel departementIDLabelmodify;
     private javax.swing.JLabel departementLabelmodify;
-    private javax.swing.JTextField departmentIDfieldmodify;
+    private javax.swing.JLabel departmentIDfieldmodify;
     private javax.swing.JComboBox<String> employeeTypeComboBoxmodify;
     private javax.swing.JLabel employeeTypeLabelmodify;
     private javax.swing.JLabel enterIDLabelmodify;

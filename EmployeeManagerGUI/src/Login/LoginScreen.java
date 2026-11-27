@@ -131,7 +131,7 @@ public class LoginScreen extends javax.swing.JFrame {
            JOptionPane.showMessageDialog(this, "Please enter password.");
        if( username.equals("admin") && password.equals("admin123")){
            HomeScreen h = new HomeScreen();
-           this.setVisible(false);
+           this.dispose();
            h.setVisible(true);
        }
        else

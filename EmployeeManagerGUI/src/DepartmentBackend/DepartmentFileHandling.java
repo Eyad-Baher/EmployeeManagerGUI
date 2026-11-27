@@ -11,6 +11,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -43,9 +44,9 @@ public class DepartmentFileHandling {
             freader.close();
             
         } catch (FileNotFoundException ex) {
-            System.getLogger(DepartmentFileHandling.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
+            return;
         } catch (IOException ex) {
-                System.getLogger(DepartmentFileHandling.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
+            JOptionPane.showMessageDialog(null, "Error while loading departments", "Error", JOptionPane.WARNING_MESSAGE);
             }
         
     }

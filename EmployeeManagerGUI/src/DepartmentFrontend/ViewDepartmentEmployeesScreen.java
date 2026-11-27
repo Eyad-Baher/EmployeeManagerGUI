@@ -128,7 +128,7 @@ public class ViewDepartmentEmployeesScreen extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "No departments exist");
             return;
         }
-        if(EmployeeManager.employees.isEmpty())
+        if(EmployeeManager.getEmployees().isEmpty())
         {
             JOptionPane.showMessageDialog(this, "No employees");
             return;

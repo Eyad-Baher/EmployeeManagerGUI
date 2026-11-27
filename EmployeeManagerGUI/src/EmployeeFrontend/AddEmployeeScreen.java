@@ -8,29 +8,30 @@ import DepartmentBackend.Department;
 import EmployeeBackend.Employee;
 import EmployeeBackend.EmployeeManager;
 import javax.swing.JOptionPane;
+import DepartmentBackend.*;
 
 /**
  *
  * @author HP
  */
 public class AddEmployeeScreen extends javax.swing.JFrame {
-
+    
     String empFirstName;
     String empLastName;
     int empAge;
     String empPosn;
     String empDepName;
     String empType;
-
+    
     double empBasicSalary;
     double empBonus;
-
+    
     double empHoursWorked;
     double empHourlyRate;
-
+    
     Department empDep;
     int empDepID;
-
+    
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(AddEmployeeScreen.class.getName());
 
     /**
@@ -38,6 +39,11 @@ public class AddEmployeeScreen extends javax.swing.JFrame {
      */
     public AddEmployeeScreen() {
         initComponents();
+        
+        comboBoxDeppartement.removeAllItems();
+        for (Department d : DepartmentManager.getDepList()) {
+            comboBoxDeppartement.addItem(d.getName());
+        }
     }
 
     /**
@@ -54,7 +60,6 @@ public class AddEmployeeScreen extends javax.swing.JFrame {
         enterIDLabel = new javax.swing.JLabel();
         idAutomaticGeneratedLabel = new javax.swing.JLabel();
         fistNameLabel = new javax.swing.JLabel();
-        departmentIDfield = new javax.swing.JTextField();
         LastNameLabel = new javax.swing.JLabel();
         lastNameField = new javax.swing.JTextField();
         ageLabel = new javax.swing.JLabel();
@@ -79,6 +84,7 @@ public class AddEmployeeScreen extends javax.swing.JFrame {
         ClearButton = new javax.swing.JButton();
         CreateButton1 = new javax.swing.JButton();
         BackButton = new javax.swing.JButton();
+        departmentIDfield = new javax.swing.JLabel();
 
         jLabel2.setText("jLabel2");
 
@@ -99,10 +105,6 @@ public class AddEmployeeScreen extends javax.swing.JFrame {
         fistNameLabel.setFont(new java.awt.Font("Arial", 2, 18)); // NOI18N
         fistNameLabel.setForeground(new java.awt.Color(255, 51, 255));
         fistNameLabel.setText("First Name:");
-
-        departmentIDfield.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        departmentIDfield.setForeground(new java.awt.Color(0, 255, 204));
-        departmentIDfield.addActionListener(this::departmentIDfieldActionPerformed);
 
         LastNameLabel.setFont(new java.awt.Font("Arial", 2, 18)); // NOI18N
         LastNameLabel.setForeground(new java.awt.Color(255, 51, 255));
@@ -207,6 +209,9 @@ public class AddEmployeeScreen extends javax.swing.JFrame {
         BackButton.setText("<= Back");
         BackButton.addActionListener(this::BackButtonActionPerformed);
 
+        departmentIDfield.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        departmentIDfield.setForeground(new java.awt.Color(0, 102, 102));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -220,59 +225,57 @@ public class AddEmployeeScreen extends javax.swing.JFrame {
                         .addComponent(idAutomaticGeneratedLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGap(15, 15, 15)
+                        .addComponent(BackButton, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(addEmployeeLabel)
+                        .addGap(200, 200, 200))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(employeeTypeLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(positionLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(LastNameLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(ageLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(salaryLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(employeeTypeLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(positionLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(LastNameLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(ageLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(salaryLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(departementLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE)
-                                                .addGap(6, 6, 6))
-                                            .addComponent(fistNameLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                        .addGap(83, 83, 83)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                            .addComponent(lastNameField, javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(ageField, javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(comboBoxDeppartement, javax.swing.GroupLayout.Alignment.LEADING, 0, 183, Short.MAX_VALUE)
-                                            .addComponent(positionField, javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(employeeTypeComboBox, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(salaryField, javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(HoursWorkedField, javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(firstNameField, javax.swing.GroupLayout.Alignment.LEADING))
-                                        .addGap(38, 38, 38))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(HoursworkedLabel)
-                                            .addComponent(CreateButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(departementLabel)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(departmentIDfield, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(111, 111, 111)
-                                        .addComponent(ClearButton, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(BonusLabel)
-                                            .addComponent(HourlyRateLabel))
-                                        .addGap(18, 18, 18)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(HourlyRateField, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(BonusField, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                        .addComponent(departementLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE)
+                                        .addGap(6, 6, 6))
+                                    .addComponent(fistNameLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(83, 83, 83)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(lastNameField, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(ageField, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(comboBoxDeppartement, javax.swing.GroupLayout.Alignment.LEADING, 0, 183, Short.MAX_VALUE)
+                                    .addComponent(positionField, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(employeeTypeComboBox, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(salaryField, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(HoursWorkedField, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(firstNameField, javax.swing.GroupLayout.Alignment.LEADING))
+                                .addGap(38, 38, 38))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(15, 15, 15)
-                                .addComponent(BackButton, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(addEmployeeLabel)
-                                .addGap(168, 168, 168)))
-                        .addGap(32, 32, 32)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(HoursworkedLabel)
+                                    .addComponent(CreateButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(departementLabel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(departmentIDfield, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(111, 111, 111)
+                                .addComponent(ClearButton, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(BonusLabel)
+                                    .addComponent(HourlyRateLabel))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(HourlyRateField, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(BonusField, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(39, 39, 39)))
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -284,66 +287,65 @@ public class AddEmployeeScreen extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(addEmployeeLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(enterIDLabel)
+                    .addComponent(idAutomaticGeneratedLabel))
+                .addGap(21, 21, 21)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(fistNameLabel)
+                    .addComponent(firstNameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(LastNameLabel)
+                    .addComponent(lastNameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(ageLabel)
+                    .addComponent(ageField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(55, 55, 55))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(enterIDLabel)
-                            .addComponent(idAutomaticGeneratedLabel))
-                        .addGap(21, 21, 21)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(fistNameLabel)
-                            .addComponent(firstNameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(departementLabel1)
+                            .addComponent(comboBoxDeppartement, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(LastNameLabel)
-                            .addComponent(lastNameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(positionLabel)
+                            .addComponent(positionField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(ageLabel)
-                            .addComponent(ageField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(employeeTypeLabel)
+                            .addComponent(employeeTypeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(departementLabel)
+                        .addComponent(departmentIDfield)))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(salaryLabel)
+                            .addComponent(salaryField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(departementLabel1)
-                                    .addComponent(comboBoxDeppartement, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(positionLabel)
-                                    .addComponent(positionField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(employeeTypeLabel)
-                                    .addComponent(employeeTypeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(departementLabel)
-                                .addComponent(departmentIDfield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(HoursworkedLabel)
+                            .addComponent(HoursWorkedField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(salaryLabel)
-                                    .addComponent(salaryField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(HoursworkedLabel)
-                                    .addComponent(HoursWorkedField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addComponent(CreateButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(BonusLabel)
-                                    .addComponent(BonusField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(HourlyRateLabel)
-                                    .addComponent(HourlyRateField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addComponent(ClearButton, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap())))
+                        .addComponent(CreateButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(BonusLabel)
+                            .addComponent(BonusField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(HourlyRateLabel)
+                            .addComponent(HourlyRateField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addComponent(ClearButton, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(55, 55, 55))
         );
 
         BonusField.setVisible(false);
@@ -366,8 +368,17 @@ public class AddEmployeeScreen extends javax.swing.JFrame {
 
     private void comboBoxDeppartementActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxDeppartementActionPerformed
         // TODO add your handling code here:
-        empDepName = String.valueOf(comboBoxDeppartement.getSelectedItem());
-
+        Object selected = comboBoxDeppartement.getSelectedItem();
+        if (selected == null) {
+            departmentIDfield.setText("");
+            return;
+        }
+        Department depSelected = DepartmentManager.getDepartmentByName(selected.toString());
+        if (depSelected == null) {
+            departmentIDfield.setText("");
+        } else {
+            departmentIDfield.setText(String.valueOf(depSelected.getId()));
+        }
     }//GEN-LAST:event_comboBoxDeppartementActionPerformed
 
     private void comboBoxDeppartementKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_comboBoxDeppartementKeyReleased
@@ -397,9 +408,9 @@ public class AddEmployeeScreen extends javax.swing.JFrame {
             HoursWorkedField.setVisible(!false);
             HoursworkedLabel.setVisible(!false);
             empType = "PART";
-
+            
         }
-
+        
 
     }//GEN-LAST:event_employeeTypeComboBoxActionPerformed
 
@@ -439,12 +450,6 @@ public class AddEmployeeScreen extends javax.swing.JFrame {
 
     }//GEN-LAST:event_positionFieldActionPerformed
 
-    private void departmentIDfieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_departmentIDfieldActionPerformed
-        // TODO add your handling code here:
-
-
-    }//GEN-LAST:event_departmentIDfieldActionPerformed
-
     private void HourlyRateFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HourlyRateFieldActionPerformed
         // TODO add your handling code here:
 
@@ -455,11 +460,11 @@ public class AddEmployeeScreen extends javax.swing.JFrame {
         // TODO add your handling code here:
 
         int choice = JOptionPane.showConfirmDialog(null, "Are you sure you want to clear the input details?", "Clear Details", JOptionPane.YES_NO_OPTION);
-
+        
         if (choice == 0) {
-
+            
             clearAll();
-
+            
         }
 
     }//GEN-LAST:event_ClearButtonActionPerformed
@@ -513,7 +518,6 @@ public class AddEmployeeScreen extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Invalid department ID");
             departmentIDfield.setText("");
             departmentIDfield.requestFocusInWindow();
-            departmentIDfield.selectAll();
             return;
         }
 
@@ -524,7 +528,7 @@ public class AddEmployeeScreen extends javax.swing.JFrame {
         } else {
             empType = "PART";
         }
-
+        
         if (empType.equals("FULL")) {
             if (!FrontValidation.validateNums(salaryField.getText())) {
                 JOptionPane.showMessageDialog(null, "Invalid Salary");
@@ -534,7 +538,7 @@ public class AddEmployeeScreen extends javax.swing.JFrame {
                 return;
             }
             empBasicSalary = Double.parseDouble(salaryField.getText());
-
+            
             if (!FrontValidation.validateNums(BonusField.getText())) {
                 JOptionPane.showMessageDialog(null, "Invalid bonus salary");
                 BonusField.setText("");
@@ -543,7 +547,7 @@ public class AddEmployeeScreen extends javax.swing.JFrame {
                 return;
             }
             empBonus = Double.parseDouble(BonusField.getText());
-
+            
         } else {
             if (!FrontValidation.validateNums(HoursWorkedField.getText())) {
                 JOptionPane.showMessageDialog(null, "Invalid hours worked");
@@ -553,7 +557,7 @@ public class AddEmployeeScreen extends javax.swing.JFrame {
                 return;
             }
             empHoursWorked = Double.parseDouble(HoursWorkedField.getText());
-
+            
             if (!FrontValidation.validateNums(HourlyRateField.getText())) {
                 JOptionPane.showMessageDialog(null, "Invalid hourly rate");
                 HourlyRateField.setText("");
@@ -563,7 +567,7 @@ public class AddEmployeeScreen extends javax.swing.JFrame {
             }
             empHourlyRate = Double.parseDouble(HourlyRateField.getText());
         }
-
+        
         if (empType.equals("FULL") && (empFirstName == null || empFirstName.trim().isEmpty()
                 || empLastName == null || empLastName.trim().isEmpty()
                 || empPosn == null || empPosn.trim().isEmpty()
@@ -579,7 +583,7 @@ public class AddEmployeeScreen extends javax.swing.JFrame {
             );
             return;
         }
-
+        
         if (empType.equals("PART") && (empFirstName == null || empFirstName.trim().isEmpty()
                 || empLastName == null || empLastName.trim().isEmpty()
                 || empPosn == null || empPosn.trim().isEmpty()
@@ -595,22 +599,22 @@ public class AddEmployeeScreen extends javax.swing.JFrame {
             );
             return;
         }
-
+        
         empDep = new Department(empDepName, empDepID);
-
+        
         int choice = JOptionPane.showConfirmDialog(null, "Are you sure you want to add Employee", "Employee Creation", JOptionPane.YES_NO_OPTION);
-
+        
         if (choice == 0) {
             if ("FULL".equals(empType)) {
-
+                
                 EmployeeManager.createFullEmployee(empBasicSalary, empBonus, 0, empFirstName, empLastName, empDep, empAge, empPosn, empType);
                 JOptionPane.showMessageDialog(null, "Employee Added Successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
                 EmployeeManager.saveAll();
-
+                
                 clearAll();
                 idAutomaticGeneratedLabel.setText(String.valueOf(Employee.getEmployeeNum()));
                 return;
-
+                
             } else if ("PART".equals(empType)) {
                 EmployeeManager.createPartEmployee(empHourlyRate, empHoursWorked, 0, empFirstName, empLastName, empDep, empAge, empPosn, empType);
                 JOptionPane.showMessageDialog(null, "Employee Added Successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
@@ -620,38 +624,38 @@ public class AddEmployeeScreen extends javax.swing.JFrame {
                 return;
             }
         }
-
+        
         JOptionPane.showMessageDialog(null, "Unsuccessfull Creation");
-
+        
 
     }//GEN-LAST:event_CreateButton1ActionPerformed
 
     private void BackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackButtonActionPerformed
         // TODO add your handling code here:
         OptionEmployeeScreen optionScreen = new OptionEmployeeScreen();
-
+        
         this.setVisible(false);
         optionScreen.setVisible(true);
-
+        
 
     }//GEN-LAST:event_BackButtonActionPerformed
 
     private void ClearButtonStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_ClearButtonStateChanged
         // TODO add your handling code here:
     }//GEN-LAST:event_ClearButtonStateChanged
-
+    
     private void clearAll() {
         firstNameField.setText("");
         lastNameField.setText("");
         ageField.setText("");
         positionField.setText("");
-
+        
         salaryField.setText("");
         BonusField.setText("");
-
+        
         HoursWorkedField.setText("");
         HourlyRateField.setText("");
-
+        
         empAge = 0;
         empBasicSalary = 0;
         empBonus = 0;
@@ -708,7 +712,7 @@ public class AddEmployeeScreen extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> comboBoxDeppartement;
     private javax.swing.JLabel departementLabel;
     private javax.swing.JLabel departementLabel1;
-    private javax.swing.JTextField departmentIDfield;
+    private javax.swing.JLabel departmentIDfield;
     private javax.swing.JComboBox<String> employeeTypeComboBox;
     private javax.swing.JLabel employeeTypeLabel;
     private javax.swing.JLabel enterIDLabel;
