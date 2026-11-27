@@ -604,23 +604,26 @@ public class AddEmployeeScreen extends javax.swing.JFrame {
             if ("FULL".equals(empType)) {
 
                 EmployeeManager.createFullEmployee(empBasicSalary, empBonus, 0, empFirstName, empLastName, empDep, empAge, empPosn, empType);
-                JOptionPane.showConfirmDialog(null, "Employee Added Successfully");
+                JOptionPane.showMessageDialog(null, "Employee Added Successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
                 EmployeeManager.saveAll();
+
                 clearAll();
+                idAutomaticGeneratedLabel.setText(String.valueOf(Employee.getEmployeeNum()));
                 return;
 
             } else if ("PART".equals(empType)) {
                 EmployeeManager.createPartEmployee(empHourlyRate, empHoursWorked, 0, empFirstName, empLastName, empDep, empAge, empPosn, empType);
-                JOptionPane.showMessageDialog(null, "Employee Added Successfully", "Successful Creation", JOptionPane.OK_OPTION);
+                JOptionPane.showMessageDialog(null, "Employee Added Successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
                 EmployeeManager.saveAll();
                 clearAll();
+                idAutomaticGeneratedLabel.setText(String.valueOf(Employee.getEmployeeNum()));
                 return;
             }
         }
 
         JOptionPane.showMessageDialog(null, "Unsuccessfull Creation");
 
-        idAutomaticGeneratedLabel.setText(String.valueOf(Employee.getEmployeeNum()));
+
     }//GEN-LAST:event_CreateButton1ActionPerformed
 
     private void BackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackButtonActionPerformed

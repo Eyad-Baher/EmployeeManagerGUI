@@ -224,20 +224,20 @@ public class ViewEmployeesScreen extends javax.swing.JFrame {
     private void SearchIDFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchIDFieldActionPerformed
         // TODO add your handling code here:
 
-        String IDStr = SearchIDField.getText();
+        String text = SearchIDField.getText().trim();
 
-        if (!FrontValidation.validateNums(IDStr)) {
-            JOptionPane.showMessageDialog(null, "Invalid ID", "Search Failed", JOptionPane.WARNING_MESSAGE);
-            SearchIDField.requestFocus();
-            SearchIDField.selectAll();
-            SearchIDField.setText("");
-            return;
-        }
+    if (text.isEmpty()) {
+        sorter.setRowFilter(null);          
+        return;
+    }
 
-        int searchID = Integer.parseInt(IDStr);
+    sorter.setRowFilter(
+            javax.swing.RowFilter.regexFilter("(?i)" + java.util.regex.Pattern.quote(text)));
 
-        sorter.setRowFilter(
-                javax.swing.RowFilter.regexFilter("^" + java.util.regex.Pattern.quote(String.valueOf(searchID)) + "$", 0));
+    if (employeesTable.getRowCount() == 0) {
+        JOptionPane.showMessageDialog(this, "No employee matches \"" + text + "\"",
+                "Search", JOptionPane.INFORMATION_MESSAGE);
+    }
     }//GEN-LAST:event_SearchIDFieldActionPerformed
 
     private void showAllButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showAllButtonActionPerformed
