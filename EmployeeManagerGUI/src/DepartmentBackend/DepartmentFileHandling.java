@@ -79,7 +79,7 @@ public class DepartmentFileHandling {
     public static boolean addDepToFile(Department dep)
     {
         try {
-            BufferedWriter fwriter = new BufferedWriter(new FileWriter("DepartmentDetails.csv",true));
+            BufferedWriter fwriter = new BufferedWriter(new FileWriter(DFILENAME,true));
             fwriter.write(dep.getId()+","+dep.getName());
             fwriter.newLine();
             fwriter.close();
