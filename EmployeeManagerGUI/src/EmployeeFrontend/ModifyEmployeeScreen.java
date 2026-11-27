@@ -24,15 +24,16 @@ public class ModifyEmployeeScreen extends javax.swing.JDialog {
     public ModifyEmployeeScreen(java.awt.Frame parent, boolean modal, Employee emp) {
         super(parent, modal);
         this.emp = emp;
+        initComponents();
         
-        if(emp == null)
+        try
         {
+            loadEmp();
+        }
+        catch(NullPointerException e){
             JOptionPane.showMessageDialog(null, "No employee found", "Error", JOptionPane.WARNING_MESSAGE);
             goBack();
         }
-        
-        initComponents();
-        loadEmp();
         setLocationRelativeTo(parent);
     }
     private String empDepName;
@@ -51,9 +52,10 @@ public class ModifyEmployeeScreen extends javax.swing.JDialog {
     }
     
     private void goBack(){
-     ViewEmployeesScreen VE= new ViewEmployeesScreen();
-     VE.setVisible(true);
+     
      this.dispose();
+     
+     
      
         
     }
@@ -207,6 +209,7 @@ public class ModifyEmployeeScreen extends javax.swing.JDialog {
         backButtonmodify.setBackground(new java.awt.Color(204, 0, 0));
         backButtonmodify.setFont(new java.awt.Font("Arial", 3, 18)); // NOI18N
         backButtonmodify.setText("<= Back");
+        backButtonmodify.addActionListener(this::backButtonmodifyActionPerformed);
 
         modifyButton.setBackground(new java.awt.Color(0, 204, 51));
         modifyButton.setFont(new java.awt.Font("Arial", 3, 18)); // NOI18N
@@ -430,6 +433,11 @@ public class ModifyEmployeeScreen extends javax.swing.JDialog {
     private void modifyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifyButtonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_modifyButtonActionPerformed
+
+    private void backButtonmodifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonmodifyActionPerformed
+        // TODO add your handling code here:
+        goBack();
+    }//GEN-LAST:event_backButtonmodifyActionPerformed
 
     /**
      * @param args the command line arguments
