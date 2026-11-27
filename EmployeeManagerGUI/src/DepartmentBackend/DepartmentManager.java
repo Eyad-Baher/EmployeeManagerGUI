@@ -17,8 +17,24 @@ import java.util.ArrayList;
  * @author maria
  */
 public class DepartmentManager {
-    public static ArrayList<Department> depList  = new ArrayList<>();
+    private static ArrayList<Department> depList  = new ArrayList<>();
     
+    
+    public Department getDepartmentById(int id)
+    {
+        for(Department d: DepartmentManager.depList)
+        {
+            if(d.getId()==id)
+                return d;
+        }
+        return null;
+    }
+    
+    
+    public static ArrayList<Department> getDepList()
+    {
+        return depList;
+    }
     
     //mariam's addDepartment:
     public static boolean addDepartment(String name)

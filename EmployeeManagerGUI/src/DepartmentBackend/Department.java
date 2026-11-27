@@ -50,5 +50,5 @@ public class Department {
     public static void setDepNum(int depNum) {
         Department.depNum = depNum;
     }
-   
+    
 }
