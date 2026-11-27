@@ -55,8 +55,7 @@ public class AddDepartmentScreen extends javax.swing.JFrame {
         departmentTextField.addActionListener(this::departmentTextFieldActionPerformed);
 
         backButton.setBackground(new java.awt.Color(204, 255, 255));
-        backButton.setFont(new java.awt.Font("Tw Cen MT", 0, 12)); // NOI18N
-        backButton.setText("<---");
+        backButton.setText("<-- Back");
         backButton.addActionListener(this::backButtonActionPerformed);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -74,7 +73,7 @@ public class AddDepartmentScreen extends javax.swing.JFrame {
                 .addGap(89, 89, 89))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(backButton, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(backButton)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -82,13 +81,13 @@ public class AddDepartmentScreen extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(backButton)
-                .addGap(171, 171, 171)
+                .addGap(155, 155, 155)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(departmentTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(80, 80, 80)
                 .addComponent(addButton)
-                .addContainerGap(127, Short.MAX_VALUE))
+                .addContainerGap(141, Short.MAX_VALUE))
         );
 
         pack();

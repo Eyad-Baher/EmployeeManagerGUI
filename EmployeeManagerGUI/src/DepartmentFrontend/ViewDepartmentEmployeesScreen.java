@@ -76,7 +76,7 @@ public class ViewDepartmentEmployeesScreen extends javax.swing.JFrame {
         depComboBox.addActionListener(this::depComboBoxActionPerformed);
 
         backButton.setBackground(new java.awt.Color(204, 255, 255));
-        backButton.setText("<---");
+        backButton.setText("<-- Back");
         backButton.addActionListener(this::backButtonActionPerformed);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -99,7 +99,7 @@ public class ViewDepartmentEmployeesScreen extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(backButton, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(backButton)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
