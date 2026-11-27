@@ -90,21 +90,5 @@ public class DepartmentFileHandling {
         }
     }
     
-    /*public static void loadDep()      /////same as readFile method
-    {
-        String line;
-        BufferedReader freader;
-        try {
-            freader = new BufferedReader(new FileReader("DepartmentDetails.csv"));
-            while((line = freader.readLine()) !=null)
-            {
-                parseDetails(line);
-            }
-        } catch (FileNotFoundException ex) {
-            System.getLogger(DepartmentFileHandling.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
-        } catch (IOException ex) {
-            System.getLogger(DepartmentFileHandling.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
-        }
-    }*/
     
 }

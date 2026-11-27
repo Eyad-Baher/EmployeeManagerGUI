@@ -19,10 +19,6 @@ import java.util.ArrayList;
 public class DepartmentManager {
     public static ArrayList<Department> depList  = new ArrayList<>();
     
-    public static void addDepartment(Department department)
-    {
-        depList.add(department);
-    }
     
     //mariam's addDepartment:
     public static boolean addDepartment(String name)
@@ -44,12 +40,6 @@ public class DepartmentManager {
         return true;
     }
     
-    //old loadDepartment
-    /*public static void loadDepartment(String name, int id){
-        Department dep = new Department(name, id);
-        dep.setId(id);
-        addDepartment(dep);
-    }*/
     
     //mariam's loadDepartment:
     public static void loadDepartment(String name, int id){
