@@ -3,9 +3,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
  */
 package employeemanagergui;
+
 import DepartmentBackend.DepartmentFileHandling;
 import EmployeeBackend.*;
 import EmployeeFrontend.*;
+import Login.HomeScreen;
 import Login.LoginScreen;
 
 /**
@@ -21,7 +23,9 @@ public class EmployeeManagerGUI {
         // TODO code application logic here
         DepartmentFileHandling.readFile();
         EmployeeFileHandler.loadFile();   // 1st: fill the list from EmployeeDetails.csv
-        java.awt.EventQueue.invokeLater(() -> new LoginScreen().setVisible(true));
+        //java.awt.EventQueue.invokeLater(() -> new LoginScreen().setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> new HomeScreen().setVisible(true));
+
     }
-    
+
 }

@@ -98,7 +98,7 @@ public class HomeScreen extends javax.swing.JFrame {
 
     private void logOutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logOutButtonActionPerformed
         LoginScreen l = new LoginScreen();
-        this.setVisible(false);
+        this.dispose();
         l.setVisible(true);
     }//GEN-LAST:event_logOutButtonActionPerformed
 
