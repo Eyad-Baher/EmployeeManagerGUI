@@ -3,24 +3,29 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package EmployeeBackend;
+
 import DepartmentBackend.Department;
+
 /**
  *
  * @author HP
  */
 public abstract class Employee {
-    
+
     private static int employeeNum = 0;
     private int employeeID;
     private String firstName;
     private String lastName;
-    private Department department ;
+    private Department department;
     private int age;
     private String employeePosition;
     private String employeeType;
 
+    public static final String FULL = "FULL";
+    public static final String PART = "PART";
+
     public Employee(String firstName, String lastName, Department department, int age, String employeePosition, String employeeType) {
-       
+
         this.employeeID = employeeNum;
         employeeNum++;
         this.firstName = firstName;
@@ -63,8 +68,6 @@ public abstract class Employee {
         this.department = department;
     }
 
-
-
     public int getAge() {
         return age;
     }
@@ -96,12 +99,7 @@ public abstract class Employee {
     protected void setEmployeeID(int employeeID) {
         this.employeeID = employeeID;
     }
-    
 
-    
-    
-    
     public abstract double calcSalary();
-    
-    
+
 }

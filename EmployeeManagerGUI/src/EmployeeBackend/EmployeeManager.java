@@ -5,7 +5,6 @@
 package EmployeeBackend;
 
 import DepartmentBackend.Department;
-import java.lang.invoke.MethodHandles;
 import java.util.ArrayList;
 
 /**
@@ -26,11 +25,13 @@ public class EmployeeManager {
 
     public static void createFullEmployee(double basicMonthlySalary, double monthlyBonus, double totalSalary, String firstName, String lastName, Department Department, int age, String employeePosition, String employeeType) {
         Employee fullTimeEmp = new FullTimeEmployee(basicMonthlySalary, monthlyBonus, totalSalary, firstName, lastName, Department, age, employeePosition, employeeType);
+        fullTimeEmp.calcSalary();
         addEmployee(fullTimeEmp);
     }
 
     public static void createPartEmployee(double hourlyPaymentRate, double hoursWorked, double totalSalary, String firstName, String lastName, Department Department, int age, String employeePosition, String employeeType) {
         Employee partTimeEmp = new PartTimeEmployee(hourlyPaymentRate, hoursWorked, totalSalary, firstName, lastName, Department, age, employeePosition, employeeType);
+        partTimeEmp.calcSalary();
         addEmployee(partTimeEmp);
     }
 
@@ -57,7 +58,7 @@ public class EmployeeManager {
 
     public static int findByDepartment(Department empDep) {
         for (int i = 0; i < employees.size(); i++) {
-            if (employees.get(i).getDepartment().getDepartmentName().toLowerCase().equals(empDep.getDepartmentName().toLowerCase())) {
+            if (employees.get(i).getDepartment().getName().toLowerCase().equals(empDep.getName().toLowerCase())) {
 
                 return i;
 
@@ -78,12 +79,59 @@ public class EmployeeManager {
         }
 
     }
-    
-    public static void modifyEmployee(int empID)
-    {
-        int index = findByID(empID);
-        
-        
+
+    public static void saveAll() {
+        EmployeeFileHandler.saveToFile(employees);
     }
 
+    public static void saveEmpOnly(Employee emp)
+    {
+        EmployeeFileHandler.addToFile(emp);
+    }
+    public static void clearAll() {
+        employees.clear();
+    }
+
+    public static boolean modifyEmployee(int id, String newType,
+            double basicMonthlySalary, double monthlyBonus,
+            double hourlyRate, double hoursWorked,
+            String firstName, String lastName, Department dept,
+            int age, String position) {
+
+        int index = findByID(id);
+        if (index == -1) {
+            return false;
+        }
+
+        int oldNum = Employee.getEmployeeNum();
+        Employee updated;
+
+        if (newType.equals(Employee.FULL)) {
+            updated = new FullTimeEmployee(basicMonthlySalary, monthlyBonus, 0,
+                    firstName, lastName, dept, age, position, Employee.FULL);
+        } else if (newType.equals(Employee.PART)) {
+            updated = new PartTimeEmployee(hourlyRate, hoursWorked, 0,
+                    firstName, lastName, dept, age, position, Employee.PART);
+        } else {
+            return false; // unsupported type
+        }
+
+        updated.setEmployeeID(id);
+        Employee.setEmployeeNum(oldNum);
+        updated.calcSalary();
+
+        employees.set(index, updated);
+        saveAll();
+        return true;
+    }
+
+    public static int getSize() {
+        return employees.size();
+    }
+
+    public static Employee getEmployeeAtIdx(int idx)
+    {
+        return employees.get(idx);
+    }
+    
 }

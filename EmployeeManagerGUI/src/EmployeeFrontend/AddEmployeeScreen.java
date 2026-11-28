@@ -11,6 +11,22 @@ import EmployeeBackend.FullTimeEmployee;
  */
 public class AddEmployeeScreen extends javax.swing.JFrame {
     
+    String empFirstName;
+    String empLastName;
+    int empAge;
+    String empPosn;
+    String empDepName;
+    String empType;
+    
+    double empBasicSalary;
+    double empBonus;
+    
+    double empHoursWorked;
+    double empHourlyRate;
+    
+    Department empDep;
+    int empDepID;
+    
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(AddEmployeeScreen.class.getName());
 
     /**
@@ -18,6 +34,11 @@ public class AddEmployeeScreen extends javax.swing.JFrame {
      */
     public AddEmployeeScreen() {
         initComponents();
+        
+        comboBoxDeppartement.removeAllItems();
+        for (Department d : DepartmentManager.getDepList()) {
+            comboBoxDeppartement.addItem(d.getName());
+        }
     }
 
     /**
